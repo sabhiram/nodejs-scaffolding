@@ -1,3 +1,6 @@
+/*
+    Application Requires
+*/
 var 
     /* 
     Argparse
@@ -35,34 +38,31 @@ var
     */
     util            = require('util'),
     path            = require('path');
-    
 
-var parser = new ArgumentParser({
-    version:        '0.0.0',
-    addHelp:        true,
-    description:    'Starter NodeJS+Express project!'
-});
-parser.addArgument(['-p', '--port'], {help: 'Port to start server on', defaultValue: 1234, type: "int"});
-var args = parser.parseArgs();
-console.log(args)
+
+/*
+    Application Globals
+*/
+var args            = null;
+
 
 /* 
-Initialize application...
+    Initialize Server
 */
 async.series([
     // 1. Setup loggers
     function setup_loggers(next_cb) {
-        console.log("setup_loggers");
+        console.log("TODO: setup_loggers");
         next_cb();
     },
     // 2. Parse arguments
     function parse_arguments(next_cb) {
-        console.log("parse_arguments");
+        args = parse_application_arguments();
         next_cb();
     },
     // 3. Setup application routes
     function setup_routes(next_cb) {
-        console.log("setup_routes");
+        console.log("TODO: setup_routes");
         next_cb();
     },
 ], function(error) {
@@ -74,3 +74,25 @@ async.series([
         // TODO: Listen w/ server here
     }    
 });
+
+
+/*
+    Helper Functions...
+*/
+/*
+Function:
+    parse_application_arguments
+
+Description:
+    This is a sync function since it will only ever be 
+    invoked during the init of the application.
+*/
+function parse_application_arguments() {
+    var parser = new ArgumentParser({
+        version:        '0.0.0',
+        addHelp:        true,
+        description:    'Starter NodeJS+Express project!'
+    });
+    parser.addArgument(['-p', '--port'], {help: 'Port to start server on', defaultValue: 1234, type: "int"});
+    return parser.parseArgs();
+}

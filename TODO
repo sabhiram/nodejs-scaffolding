@@ -1,0 +1,3 @@
+1. Add logger (winston)
+2. Add tests + testing framework (moca)
+3. Fix sourcetree so we can more easily push to github etc...

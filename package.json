@@ -1,0 +1,23 @@
+{
+  "name": "node_project_template",
+  "version": "0.0.0",
+  "description": "NodeJS starter project with Express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "NodeJS",
+    "Template",
+    "Express"
+  ],
+  "author": "Shaba Abhiram",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "nconf": "~0.6.9",
+    "async": "~0.2.10",
+    "underscore": "~1.5.2",
+    "express": "~3.4.8",
+    "argparse": "~0.1.15"
+  }
+}

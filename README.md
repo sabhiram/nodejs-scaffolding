@@ -30,6 +30,7 @@ The web today is full of so many different frameworks and services, offering the
 --> Code snippets to show server etc... make branches in git project for each of these steps
 --> Talk about base modules we use - Async, underscore, nconf, argument parsing etc...
 
+
 1. A good logger
 ================
 

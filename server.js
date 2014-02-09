@@ -25,7 +25,28 @@ var
     
     // Other commonly used NodeJS modules
     util            = require('util'),
+    fs              = require('fs'),
     path            = require('path');
+
+
+/*****************************************************************************\
+    Setup Logging
+\*****************************************************************************/
+// Create logs folder if it does not exist
+// The *only* reason this is using a *Sync call is due to the
+// fact that this only occurs on server startup and can afford
+// to be a blocking call. The last thing we want in our server
+// a stupid blocking call causing our requests to get queued up.
+// So again, only do this while initializing the server, matter
+// of fact, I probably should remove this crap...
+if(!fs.existsSync('./logs')) {
+    fs.mkdirSync('./logs');
+}
+// Since we have a common logs folder for our logs, we can encapsulate
+// the loggers settings in a logger.js file, and pass the path to the
+// logs dir while requiring the logger module. This way all modules
+// can log to a consistent location.
+var log = require('./app/logger.js')('./logs');
 
 
 /*****************************************************************************\
@@ -57,7 +78,8 @@ require('./app/routes.js')(app, handlers);
 
 // Launch Server
 app.listen(args.port);
-console.log('Server up at: ' + new Date());
-console.log('... running on port: ' + args.port);
-
-
+log.info('Server up at: ' + new Date());
+log.info('... running on port: ' + args.port);
+log.error('ERROR STRING HERE');
+log.warn('WARNING STRING HERE');
+log.log('NORMAL STRING HERE');

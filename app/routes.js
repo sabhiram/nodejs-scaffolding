@@ -9,28 +9,6 @@ var
     log         = require('./logger.js')(logs_path),
     api_object  = [];
 
-module.exports = function(app, handlers) {
-    GET(app, '/', function(request, response) {
-        log.info('HTTP GET /');
-        response.send('Hello from the server!');
-        response.end();
-    }, 'The home page for our app!');
-
-    GET(app, '/foo', function(request, response) {
-        log.info('HTTP GET /foo');
-        response.send('Foo from the server!');
-        response.end();
-    }, 'The foo page for our app!');
-
-    GET(app, '/api', function(request, response) {
-        log.info('HTTP GET /api');
-        response.send(util.inspect(api_object));
-        response.end();
-    }, 'The API Page');
-
-    return api_object;
-}
-
 function append_to_api_object(type, url, description) {
     api_object.push({
         type:           type,
@@ -58,4 +36,26 @@ function DELETE(app, url, routee, description) {
     append_to_api_object("DELETE", url, description);
     app.delete(url, routee);
 }
+
+module.exports = function(app, handlers) {
+    GET(app, '/', function(request, response) {
+        log.info('HTTP GET /');
+        response.send('Hello from the server!');
+        response.end();
+    }, 'The home page for our app!');
+
+    GET(app, '/foo', function(request, response) {
+        log.info('HTTP GET /foo');
+        response.send('Foo from the server!');
+        response.end();
+    }, 'The foo page for our app!');
+
+    GET(app, '/api', function(request, response) {
+        log.info('HTTP GET /api');
+        response.send(util.inspect(api_object));
+        response.end();
+    }, 'The API Page');
+
+    return api_object;
+};
 

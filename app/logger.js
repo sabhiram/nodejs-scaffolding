@@ -27,4 +27,4 @@ module.exports = function(logs_path) {
         ],
         exitOnError: false
     });
-}
+};

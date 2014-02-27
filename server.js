@@ -83,9 +83,7 @@ app.configure(function() {
 // Configure application routes and fetch our API object which
 // just contains the TYPE, url and description of the things
 // we implement.
-api_object = require('./app/routes.js')(app, handlers);
-
-console.log(util.inspect(api_object));
+require('./app/routes.js')(app, handlers);
 
 // Launch Server
 app.listen(args.port);

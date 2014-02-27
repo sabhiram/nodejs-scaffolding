@@ -46,7 +46,8 @@ if(!fs.existsSync('./logs')) {
 // the loggers settings in a logger.js file, and pass the path to the
 // logs dir while requiring the logger module. This way all modules
 // can log to a consistent location.
-var log = require('./app/logger.js')('./logs');
+var logs_path = path.join(__dirname, 'logs');
+var log = require('./app/logger.js')(logs_path);
 
 
 /*****************************************************************************\
@@ -67,19 +68,26 @@ var app = express();
 app.configure(function() {
     // Setup app preferences
     app.use(express.cookieParser());
-    app.use(express.bodyParser());
+
+    // There is an issue which prevents express from using the bodyParser since
+    // they have not migrated to Connect 3.0. See this post for more details:
+    // http://stackoverflow.com/questions/19581146/how-to-get-rid-of-connect-3-0-deprecation-alert
+    // app.use(express.bodyParser());
+    app.use(express.json());
+    app.use(express.urlencoded());
 
     // Setup server side template engine
     app.set('view engine', 'ejs');
 });
 
-// Configure application routes
-require('./app/routes.js')(app, handlers);
+// Configure application routes and fetch our API object which
+// just contains the TYPE, url and description of the things
+// we implement.
+api_object = require('./app/routes.js')(app, handlers);
+
+console.log(util.inspect(api_object));
 
 // Launch Server
 app.listen(args.port);
 log.info('Server up at: ' + new Date());
 log.info('... running on port: ' + args.port);
-log.error('ERROR STRING HERE');
-log.warn('WARNING STRING HERE');
-log.log('NORMAL STRING HERE');

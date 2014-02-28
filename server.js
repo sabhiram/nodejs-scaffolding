@@ -56,6 +56,11 @@ var log = require('./app/logger.js')(logs_path);
 var helpers         = require('./app/helper_functions.js'),
     args            = helpers.parse_application_arguments(),
     handlers        = {
+        view: {
+            home: function(request, response) {
+                response.send('Hello from the home page!');
+            }
+        }
     };
 
 

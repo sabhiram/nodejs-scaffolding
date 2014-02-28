@@ -27,6 +27,17 @@ parse_application_arguments: function(str) {
     });
     parser.addArgument(['-p', '--port'], {help: 'Port to start server on', defaultValue: 1234, type: "int"});
     return parser.parseArgs(str);
+},
+
+// Function to concat a random group of lists so we can arbitarily 
+// target files for grunt tasks etc
+append_all: function() {
+    if(arguments.length > 0) {
+        // "apply" the concat function to '[]' (param1) and pass
+        // in the array of args to the concat function.
+        return [].concat.apply([], arguments);
+    }
+    return [];
 }
 
 };

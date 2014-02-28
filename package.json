@@ -4,7 +4,7 @@
   "description": "NodeJS starter project with Express",
   "main": "index.js",
   "scripts": {
-    "test": "make test"
+    "test": "mocha tests"
   },
   "keywords": [
     "NodeJS",
@@ -25,6 +25,8 @@
   "devDependencies": {
     "grunt": "latest",
     "grunt-contrib-jshint": "~0.8.0",
-    "should": "~3.1.3"
+    "should": "~3.1.3",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-concurrent": "~0.4.3"
   }
 }

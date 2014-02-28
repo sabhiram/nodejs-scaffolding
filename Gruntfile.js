@@ -28,6 +28,8 @@ module.exports = function(grunt) {
                 undef:              true,
                 latedef:            true,
                 immed:              true,
+                indent:             4,
+                trailing:           true,
                 globals:    {
                     require:        true,
                     module:         true,

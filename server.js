@@ -1,7 +1,7 @@
 /*****************************************************************************\
     Application Requires the following modules
 \*****************************************************************************/
-var 
+var
     // Underscore.js - http://underscorejs.org/
     //     Utility module for NodeJS with awesome helpers for
     //     working with collections, lists, and higer order functions 
@@ -59,8 +59,18 @@ var helpers         = require('./app/helper_functions.js'),
         view: {
             home: function(request, response) {
                 response.send('Hello from the home page!');
-            }
+            },
+            login: function(request, response) {
+                response.send('Hello from the login page!');
+            },
         }
+    },
+    middleware      = {
+        passthrough: function(request, response, fn) {
+            // This is a dummy middleware function which simply routes
+            // to the next function without doing anything.
+            fn();
+        },
     };
 
 
@@ -88,7 +98,7 @@ app.configure(function() {
 // Configure application routes and fetch our API object which
 // just contains the TYPE, url and description of the things
 // we implement.
-require('./app/routes.js')(app, handlers);
+require('./app/routes.js')(app, middleware, handlers);
 
 // Launch Server
 app.listen(args.port);

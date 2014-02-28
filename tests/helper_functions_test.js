@@ -1,6 +1,6 @@
 var should = require('should');
 
-describe('Testing the parse args function', function() {
+describe('Testing the parse_application_arguments function', function() {
     var helper,
         args;
 

@@ -72,7 +72,7 @@ app.configure(function() {
     // There is an issue which prevents express from using the bodyParser since
     // they have not migrated to Connect 3.0. See this post for more details:
     // http://stackoverflow.com/questions/19581146/how-to-get-rid-of-connect-3-0-deprecation-alert
-    // app.use(express.bodyParser());
+    // app.use(express.bodyParser()); /* becomes */
     app.use(express.json());
     app.use(express.urlencoded());
 

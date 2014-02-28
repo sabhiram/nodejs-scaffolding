@@ -19,14 +19,14 @@ Description:
     invoked during the init of the application.
 
 \*****************************************************************************/
-parse_application_arguments: function() {
+parse_application_arguments: function(str) {
     var parser = new ArgumentParser({
         version:        '0.0.0',
         addHelp:        true,
         description:    'Starter NodeJS+Express project!'
     });
     parser.addArgument(['-p', '--port'], {help: 'Port to start server on', defaultValue: 1234, type: "int"});
-    return parser.parseArgs();
+    return parser.parseArgs(str);
 }
 
 };

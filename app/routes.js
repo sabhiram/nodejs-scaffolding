@@ -6,15 +6,15 @@ var
     path        = require('path'),
     util        = require('util'),
     logs_path   = path.join('./', 'logs'),
-    log         = require('./logger.js')(logs_path),
-    api_object  = [];
+    log         = require('./logger.js')(logs_path);
+
 
 function append_to_api_object(type, url, description) {
-    api_object.push({
+    log.info(util.inspect({
         type:           type,
         url:            url,
         description:    description
-    });
+    }));
 }
 
 function GET(app, url, routee, description) {
@@ -37,6 +37,7 @@ function DELETE(app, url, routee, description) {
     app.delete(url, routee);
 }
 
+
 module.exports = function(app, handlers) {
     GET(app, '/', function(request, response) {
         log.info('HTTP GET /');
@@ -52,10 +53,8 @@ module.exports = function(app, handlers) {
 
     GET(app, '/api', function(request, response) {
         log.info('HTTP GET /api');
-        response.send(util.inspect(api_object));
+        response.send("HELLO THERE API");
         response.end();
     }, 'The API Page');
-
-    return api_object;
 };
 

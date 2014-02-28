@@ -6,7 +6,7 @@
 \*****************************************************************************/
 // Defining some groups of files so we can mix and match them later
 var
-    helper          = require('./app/helper_functions.js'),
+    helper          = require("./app/helper_functions.js"),
     SERVER_FILES    = [ "server.js" ],
     GRUNT_FILES     = [ "Gruntfile.js" ],
     APP_FILES       = [ "app/**/*.js" ],
@@ -35,6 +35,7 @@ module.exports = function(grunt) {
                     module:         true,
                     __dirname:      true,
                     console:        true,
+                    process:        true,
                 }
             },
         },
@@ -58,7 +59,7 @@ module.exports = function(grunt) {
             // and do not contain any of our client side testing (yet..)
             test: {
                 files:              ALL_CODE_FILES,
-                tasks:              ['run_mocha_tests']
+                tasks:              ["run_mocha_tests"]
             },
         },
 
@@ -70,8 +71,8 @@ module.exports = function(grunt) {
         // of these concurrent tasks and assign them to things like "dev" 
         // "prod" tasks.
         concurrent: {
-            lint:                   ['jshint'],
-            test:                   ['run_mocha_tests'],
+            lint:                   ["jshint"],
+            test:                   ["run_mocha_tests"],
         },
 
     });
@@ -91,7 +92,7 @@ module.exports = function(grunt) {
     // More info: http://stackoverflow.com/questions/10753288/how-to-specify-test-directory-for-mocha
     grunt.registerTask("run_mocha_tests", function() {
         var callback = this.async();
-        require("child_process").exec("mocha tests", function(error, stdout) {
+        require("child_process").exec("mocha tests --recursive", function(error, stdout) {
             grunt.log.write(stdout);
             callback(error);
         });

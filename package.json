@@ -12,7 +12,7 @@
     "Express"
   ],
   "author": "Shaba Abhiram",
-  "license": "BSD-2-Clause",
+  "license": "MIT",
   "dependencies": {
     "nconf": "~0.6.9",
     "async": "~0.2.10",

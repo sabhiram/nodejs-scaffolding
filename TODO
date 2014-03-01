@@ -1,3 +1,12 @@
-1. Add ULTs / Testing framework
-2. Document winston stuff
-3. Test exception logging
+ 1. Add ULTs / Testing framework
+ 2. Document winston stuff
+ 3. Test exception logging
+ 4. Document grunt stuff
+ 5. Document mocha + should + bdd stuff
+ 6. Document lint + mocha + clear + other grunt tasks
+ 7. Make a static site based on documentation in the docs folder
+ 8. Create a vagrant image of coreos w/ docker ready to go
+ 9. Create a dockerfile which sets up a mongodb instance
+10. User model / view / pages
+11. Salt + bcrypt for storing passwords
+12. More things I am not thinking of...

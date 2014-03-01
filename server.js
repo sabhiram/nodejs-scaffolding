@@ -62,14 +62,14 @@ var helpers         = require("./app/helper_functions.js"),
     handlers        = {
         view: {
             home: function(request, response) {
-                response.send("Hello from the home page!");
+                response.send(200, "Hello from the home page!");
             },
             login: function(request, response) {
-                response.send("Hello from the login page!");
+                response.send(200, "Hello from the login page!");
             },
             error: function(request, response) {
                 log.warn('404 page invoked due to some error!');
-                response.send("Umm, this is an error page... what the heck are you looking for?");
+                response.send(404, "Umm, this is an error page... what the heck are you looking for?");
             },
         }
     },

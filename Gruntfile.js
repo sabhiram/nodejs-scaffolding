@@ -92,7 +92,7 @@ module.exports = function(grunt) {
     // More info: http://stackoverflow.com/questions/10753288/how-to-specify-test-directory-for-mocha
     grunt.registerTask("run_mocha_tests", function() {
         var callback = this.async();
-        require("child_process").exec("mocha tests --recursive", function(error, stdout) {
+        require("child_process").exec("mocha tests -R spec --recursive", function(error, stdout) {
             grunt.log.write(stdout);
             callback(error);
         });

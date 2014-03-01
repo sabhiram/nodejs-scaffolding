@@ -1,6 +1,6 @@
 var should = require("should");
 
-describe("Testing the append_all function", function() {
+describe("[Helper Functions] append_all", function() {
     var helper;
 
     before(function(callback) {
@@ -8,17 +8,17 @@ describe("Testing the append_all function", function() {
         callback();
     });
 
-    it("Append with no params", function() {
+    it("no params", function() {
         var result = helper.append_all();
         result.length.should.be.exactly(0);
     });
 
-    it("Append with empty params", function() {
+    it("empty params", function() {
         var result = helper.append_all([], [], [], [], []);
         result.length.should.be.exactly(0);
     });
 
-    it("Append with params", function() {
+    it("with params", function() {
         var result = helper.append_all(["H"], ["E"], ["L", "L", "O"]);
         result.length.should.be.exactly(5);
         result[0].should.eql("H").and.be.a.String;
@@ -28,7 +28,7 @@ describe("Testing the append_all function", function() {
         result[4].should.eql("O").and.be.a.String;
     });
 
-    it("Append with empty arrays params", function() {
+    it("with empty arrays and valid params", function() {
         var result = helper.append_all([], ["H"], ["E"], [], [], ["L", "L", "O"]);
         result.length.should.be.exactly(5);
         result[0].should.eql("H").and.be.a.String;

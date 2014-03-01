@@ -4,7 +4,7 @@
   "description": "NodeJS starter project with Express",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests --recursive"
+    "test": "mocha tests -R spec --recursive"
   },
   "keywords": [
     "NodeJS",

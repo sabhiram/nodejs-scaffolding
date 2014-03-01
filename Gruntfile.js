@@ -45,6 +45,11 @@ module.exports = function(grunt) {
         // the "watch" job. For instance: "grunt watch:lint" will only run the
         // lint job on change, while "grunt watch" will run all jobs under "watch"
         watch: {
+            // Clear the console... anytime anything changes...
+            clear_console: {
+                files:              ALL_FILES,
+                tasks:              ["clear_console"]
+            },
 
             // Anytime the lint-able files change, we run the lint job
             // Notice the <%= %> which gives you access to the things passed
@@ -98,7 +103,17 @@ module.exports = function(grunt) {
         });
     });
 
+    // The point of this task it to clear the screen before running other watch or 
+    // whatever commands
+    grunt.registerTask("clear_console", function() {
+        var callback = this.async();
+        require("child_process").exec("clear", function(error, stdout) {
+            grunt.log.write(stdout);
+            callback(error);
+        });
+    });
+
     // Default tasks ...
-    grunt.registerTask("default", ["concurrent:lint", "concurrent:test"]);
-    grunt.registerTask("test", ["concurrent:test"]);
+    grunt.registerTask("default", ["clear_console", "concurrent:lint", "concurrent:test"]);
+    grunt.registerTask("test", ["clear_console", "concurrent:test"]);
 };

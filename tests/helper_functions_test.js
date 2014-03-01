@@ -1,11 +1,10 @@
 var should = require("should");
 
-describe("[Helper Functions] append_all", function() {
+describe("[Helper Functions] - append_all", function() {
     var helper;
 
-    before(function(callback) {
+    before(function() {
         helper = require("../app/helper_functions");
-        callback();
     });
 
     it("no params", function() {

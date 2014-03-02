@@ -6,14 +6,16 @@
 \*****************************************************************************/
 // Defining some groups of files so we can mix and match them later
 var
-    helper          = require("./app/helper_functions.js"),
-    SERVER_FILES    = [ "server.js" ],
-    GRUNT_FILES     = [ "Gruntfile.js" ],
-    APP_FILES       = [ "app/**/*.js" ],
-    TEST_FILES      = [ "tests/**/*.js" ],
-    ALL_FILES       = helper.append_all(SERVER_FILES, GRUNT_FILES, APP_FILES, TEST_FILES),
-    LINT_FILES      = helper.append_all(SERVER_FILES, APP_FILES, GRUNT_FILES),
-    ALL_CODE_FILES  = helper.append_all(SERVER_FILES, APP_FILES, TEST_FILES);
+    exec                    = require("child_process").exec,
+    helper                  = require("./app/helper_functions.js"),
+    SERVER_FILES            = [ "server.js" ],
+    GRUNT_FILES             = [ "Gruntfile.js" ],
+    APP_FILES               = [ "app/**/*.js" ],
+    TEST_FILES              = [ "tests/**/*.js" ],
+    DOCUMENTATION_FILES     = [ "docs/**/*.md", "mkdocs.yml" ],
+    ALL_FILES               = helper.append_all(SERVER_FILES, GRUNT_FILES, APP_FILES, TEST_FILES, DOCUMENTATION_FILES),
+    LINT_FILES              = helper.append_all(SERVER_FILES, APP_FILES, GRUNT_FILES),
+    ALL_CODE_FILES          = helper.append_all(SERVER_FILES, APP_FILES, TEST_FILES);
 
 module.exports = function(grunt) {
 
@@ -66,6 +68,15 @@ module.exports = function(grunt) {
                 files:              ALL_CODE_FILES,
                 tasks:              ["run_mocha_tests"]
             },
+
+            // Anytime the documentation files change, re-generate the
+            // documentation "site" from the md files. This is output
+            // to our public folder so that this site is routable from
+            // our app / etc...
+            documentation: {
+                files:              DOCUMENTATION_FILES,
+                tasks:              ["generate_documentation"]
+            },
         },
 
         // Tasks to run concurrently. This way when we deploy the default
@@ -97,7 +108,7 @@ module.exports = function(grunt) {
     // More info: http://stackoverflow.com/questions/10753288/how-to-specify-test-directory-for-mocha
     grunt.registerTask("run_mocha_tests", function() {
         var callback = this.async();
-        require("child_process").exec("mocha tests -R spec --recursive", function(error, stdout) {
+        exec("mocha tests -R spec --recursive", function(error, stdout) {
             grunt.log.write(stdout);
             callback(error);
         });
@@ -107,7 +118,18 @@ module.exports = function(grunt) {
     // whatever commands
     grunt.registerTask("clear_console", function() {
         var callback = this.async();
-        require("child_process").exec("clear", function(error, stdout) {
+        exec("clear", function(error, stdout) {
+            grunt.log.write(stdout);
+            callback(error);
+        });
+    });
+
+    // Custom task to generate documentation using mkdocs
+    grunt.registerTask("generate_documentation", function() {
+        var callback = this.async();
+        // TODO: Verify that mkdocs exists before we go off doing this...
+        // TODO: Maybe we need a plugin to install mkdocs??
+        exec("mkdocs build", function(error, stdout) {
             grunt.log.write(stdout);
             callback(error);
         });
@@ -117,3 +139,21 @@ module.exports = function(grunt) {
     grunt.registerTask("default", ["clear_console", "concurrent:lint", "concurrent:test"]);
     grunt.registerTask("test", ["clear_console", "concurrent:test"]);
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

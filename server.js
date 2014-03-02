@@ -88,6 +88,9 @@ app.configure(function() {
     // Setup app preferences
     app.use(express.cookieParser());
 
+    // Setup public visible hosted files
+    app.use(express.static(path.join(__dirname, 'public')));
+
     // There is an issue which prevents express from using the bodyParser since
     // they have not migrated to Connect 3.0. See this post for more details:
     // http://stackoverflow.com/questions/19581146/how-to-get-rid-of-connect-3-0-deprecation-alert

@@ -1,0 +1,8 @@
+site_name: NodeScaffold
+pages:
+- [index.md, Home]
+- [documentation.md, Documentation]
+- [requirements.md, Requirements]
+theme: yeti
+docs_dir: docs
+site_dir: public/v0/docs

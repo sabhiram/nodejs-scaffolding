@@ -1,4 +1,5 @@
-var should = require("should");
+var
+    should      = require("should");
 
 describe("[Helper Functions] - append_all", function() {
     var helper;

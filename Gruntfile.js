@@ -49,7 +49,7 @@ module.exports = function(grunt) {
         watch: {
             // Clear the console... anytime anything changes...
             clear_console: {
-                files:              ALL_FILES,
+                files:              GRUNT_FILES,
                 tasks:              ["clear_console"]
             },
 
@@ -89,6 +89,7 @@ module.exports = function(grunt) {
         concurrent: {
             lint:                   ["jshint"],
             test:                   ["run_mocha_tests"],
+            docs:                   ["generate_documentation"],
         },
 
     });
@@ -138,6 +139,9 @@ module.exports = function(grunt) {
     // Default tasks ...
     grunt.registerTask("default", ["clear_console", "concurrent:lint", "concurrent:test"]);
     grunt.registerTask("test", ["clear_console", "concurrent:test"]);
+    // TODO:
+    // grunt.registerTask("dev", ...);
+    // grunt.registerTask("prod", ...);
 };
 
 

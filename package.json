@@ -19,7 +19,8 @@
     "underscore": "~1.5.2",
     "express": "~3.4.8",
     "winston": "~0.7.2",
-    "mocha": "~1.17.1"
+    "mocha": "~1.17.1",
+    "mongoose": "~3.8.8"
   },
   "devDependencies": {
     "grunt": "latest",

@@ -8,11 +8,11 @@
 var
     exec                    = require("child_process").exec,
     helper                  = require("./app/helper_functions.js"),
-    SERVER_FILES            = [ "server.js" ],
-    GRUNT_FILES             = [ "Gruntfile.js" ],
-    APP_FILES               = [ "app/**/*.js" ],
-    TEST_FILES              = [ "tests/**/*.js" ],
-    DOCUMENTATION_FILES     = [ "docs/**/*.md", "mkdocs.yml" ],
+    SERVER_FILES            = ["server.js"],
+    GRUNT_FILES             = ["Gruntfile.js"],
+    APP_FILES               = ["app/**/*.js"],
+    TEST_FILES              = ["tests/**/*.js"],
+    DOCUMENTATION_FILES     = ["docs/**/*.md", "mkdocs.yml"],
     ALL_FILES               = helper.append_all(SERVER_FILES, GRUNT_FILES, APP_FILES, TEST_FILES, DOCUMENTATION_FILES),
     LINT_FILES              = helper.append_all(SERVER_FILES, APP_FILES, GRUNT_FILES),
     ALL_CODE_FILES          = helper.append_all(SERVER_FILES, APP_FILES, TEST_FILES);

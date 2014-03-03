@@ -19,11 +19,7 @@ RUN echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen
 RUN apt-get update
 RUN apt-get install -y mongodb-10gen pwgen
 
-# For now we create a data dir to use, eventually
-# we should have this mounted form the host.
-RUN mkdir -p /data/db
-
 # Expose port for MongoDB
 EXPOSE 27017
-#ENTRYPOINT ["usr/bin/mongod"]
-ENTRYPOINT ["/bin/bash"]
+EXPOSE 28017
+CMD ["mongod", "--smallfiles"]

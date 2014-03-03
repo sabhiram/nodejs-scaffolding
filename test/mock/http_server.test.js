@@ -7,39 +7,48 @@ describe("[Mock] - Mock HTTP Server", function() {
         server,
         mock_http_server;
 
-    before(function(callback) {
+    //
+    // Setup
+    //
+    before(function(done) {
         var MockServer      = require("./http_server");
         mock_http_server    = new MockServer({
             GET: [
-                {
-                    url:            "/test1",
-                    return_code:    200,
-                    return_message: "SUCCESS1"
-                },
-                {
-                    url:            "/test2",
-                    return_code:    200,
-                    return_message: "SUCCESS2"
-                }
+                { url: "/test1",        return_code: 200,   return_message: "SUCCESS1" },
+                { url: "/test2",        return_code: 200,   return_message: "SUCCESS2" }
             ],
             POST: [
-                {
-                    url:            "/test_post",
-                    return_code:    200,
-                    return_message: "SUCCESS"
-                }
+                { url: "/test_post",    return_code: 200,   return_message: "SUCCESS" }
             ]
         });
         app     = mock_http_server.get_app();
         server  = app.listen(8080);
-        callback();
+        done();
     });
 
-    after(function() {
+    //
+    // Cleanup
+    //
+    after(function(done) {
+        // Exit the mock server after we are done testing
         server.close();
+        done();
     });
 
-    it("test mock GET route", function(next_test) {
+    //
+    // Tests
+    //
+    it("app should exist", function(next_test) {
+        should.exist(app);
+        next_test();
+    });
+
+    it("server should exist", function(next_test) {
+        should.exist(server);
+        next_test();
+    });
+
+    it("GET /test1 - should succeed", function(next_test) {
         request(app)
             .get("/test1")
             .expect(200)
@@ -50,7 +59,7 @@ describe("[Mock] - Mock HTTP Server", function() {
             });
     });
 
-    it("test another mock GET route", function(next_test) {
+    it("GET /test2 - should succeed", function(next_test) {
         request(app)
             .get("/test2")
             .expect(200)
@@ -61,18 +70,20 @@ describe("[Mock] - Mock HTTP Server", function() {
             });
     });
 
-    it("test invalid GET route", function(next_test) {
+    it("GET /ishould404 - should 404", function(next_test) {
         request(app)
-            .get("ishould404")
+            .get("/ishould404")
             .expect(404)
             .end(function(error, response) {
-                should.equal(response, null);
-                error.code.should.match("ECONNREFUSED");
-                next_test();
+                should.equal(error, null);
+                // This check might be brittle, it will break when you change
+                // the message from the mock http_server.
+                response.text.should.match("Error, undefined route.");
+                next_test(error);
             });
     });
 
-    it("test mock POST route", function(next_test) {
+    it("POST /test_post - with json should return SUCCESS", function(next_test) {
         request(app)
             .post("/test_post")
             .send({A: 1, B: 2, C: 3})
@@ -80,5 +91,5 @@ describe("[Mock] - Mock HTTP Server", function() {
             .end(function(error, response) {
                 next_test(error);
             });
-    })
+    });
 });

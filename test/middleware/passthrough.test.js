@@ -4,12 +4,28 @@ var
 
 
 describe("[Middleware] - passthrough", function() {
-    var passthrough;
+    var
+        passthrough;
 
-    before(function() {
+    //
+    // Setup
+    //
+    before(function(done) {
         passthrough = require("../../app/middleware/passthrough");
+        done();
     });
 
+    // 
+    // Cleanup
+    //
+    after(function(done) {
+        // do nothing
+        done();
+    });
+
+    //
+    // Tests
+    //
     it("should route to next function", function(next_test) {
         passthrough(null, null, function() {
             next_test();
@@ -32,6 +48,9 @@ describe("[Middleware] - passthrough + MockServer", function() {
         server,
         mock_http_server;
 
+    //
+    // Setup
+    //
     before(function(callback) {
         passthrough             = require("../../app/middleware/passthrough");
         var MockServer          = require("../mock/http_server");
@@ -50,10 +69,16 @@ describe("[Middleware] - passthrough + MockServer", function() {
         callback();
     });
 
+    //
+    // Cleanup
+    //
     after(function() {
         server.close();
     });
 
+    //
+    // Tests
+    //
     it("passthrough to pre-defined route should work", function(next_test) {
         request(app)
             .get("/test1")

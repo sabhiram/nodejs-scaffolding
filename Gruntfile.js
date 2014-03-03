@@ -139,6 +139,7 @@ module.exports = function(grunt) {
     // Default tasks ...
     grunt.registerTask("default", ["clear_console", "concurrent:lint", "concurrent:test"]);
     grunt.registerTask("test", ["clear_console", "concurrent:test"]);
+
     // TODO:
     // grunt.registerTask("dev", ...);
     // grunt.registerTask("prod", ...);

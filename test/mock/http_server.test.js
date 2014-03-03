@@ -97,12 +97,15 @@ describe("[Mock] - Mock HTTP Server", function() {
             });
     });
 
-    xit("PUT /foo - should succeed", function(next_test) {
+    //
+    // Pending Tests
+    //
+    xit("TODO: Validate PUT", function(next_test) {
         // TODO: Validate PUT with Mock HTTP Server
         next_test();
     });
 
-    xit("DELETE /foo - should succeed", function(next_test) {
+    xit("TODO: Validate DELETE", function(next_test) {
         // TODO: Validate PUT with Mock HTTP Server
         next_test();
     });

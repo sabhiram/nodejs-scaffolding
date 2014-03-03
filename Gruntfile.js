@@ -11,7 +11,7 @@ var
     SERVER_FILES            = ["server.js"],
     GRUNT_FILES             = ["Gruntfile.js"],
     APP_FILES               = ["app/**/*.js"],
-    TEST_FILES              = ["tests/**/*.js"],
+    TEST_FILES              = ["test/**/*.js"],
     DOCUMENTATION_FILES     = ["docs/**/*.md", "mkdocs.yml"],
     ALL_FILES               = helper.append_all(SERVER_FILES, GRUNT_FILES, APP_FILES, TEST_FILES, DOCUMENTATION_FILES),
     LINT_FILES              = helper.append_all(SERVER_FILES, APP_FILES, GRUNT_FILES),
@@ -108,7 +108,7 @@ module.exports = function(grunt) {
     // More info: http://stackoverflow.com/questions/10753288/how-to-specify-test-directory-for-mocha
     grunt.registerTask("run_mocha_tests", function() {
         var callback = this.async();
-        exec("mocha tests -R spec --recursive", function(error, stdout) {
+        exec("mocha", function(error, stdout) {
             grunt.log.write(stdout);
             callback(error);
         });

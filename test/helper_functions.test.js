@@ -1,6 +1,9 @@
 var
     should  = require("should");
 
+//
+// Test group to validate the append_all helper function
+//
 describe("[Helper Functions] - append_all", function() {
     var helper;
 

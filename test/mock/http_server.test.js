@@ -2,6 +2,10 @@ var
     should      = require("should"),
     request     = require("supertest");
 
+//
+// Test group to validate the Mock http server by registering random
+// GET / POST etc routes. 
+//
 describe("[Mock] - Mock HTTP Server", function() {
     var app,
         server,
@@ -91,5 +95,15 @@ describe("[Mock] - Mock HTTP Server", function() {
             .end(function(error, response) {
                 next_test(error);
             });
+    });
+
+    xit("PUT /foo - should succeed", function(next_test) {
+        // TODO: Validate PUT with Mock HTTP Server
+        next_test();
+    });
+
+    xit("DELETE /foo - should succeed", function(next_test) {
+        // TODO: Validate PUT with Mock HTTP Server
+        next_test();
     });
 });

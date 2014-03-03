@@ -2,7 +2,9 @@ var
     should      = require("should"),
     request     = require("supertest");
 
-
+//
+// Test group to validate the passthrough function
+//
 describe("[Middleware] - passthrough", function() {
     var
         passthrough;
@@ -41,7 +43,10 @@ describe("[Middleware] - passthrough", function() {
     });
 });
 
-
+//
+// Test group to validate the passthrough function used in conjunction with
+// the mock http server (validated separately).
+//
 describe("[Middleware] - passthrough + MockServer", function() {
     var passthrough,
         app,

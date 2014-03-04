@@ -1,8 +1,29 @@
-site_name: NodeScaffold
+site_name: NodeJS Scaffold
 pages:
-- [index.md, Home]
-- [documentation.md, Documentation]
-- [requirements.md, Requirements]
-theme: yeti
+- ['index.md',                      'Sitemap']
+# - ['install/overview.md',           'Install',      'Install overview']
+# - ['install/project.md',            'Install',      'Project structre - what goes where?']
+# - ['install/modules.md',            'Install',      'Modules Used']
+# - ['install/requirements.md',       'Install',      'Requirements']
+# - ['install/install.md',            'Install',      'Install / Getting started']
+# - ['tools/tools.md',                'Tools',        'Toolbox overview']
+# - ['tools/mkdocs.md',               'Tools',        'Mkdocs - painless documentation']
+# - ['tools/grunt.md',                'Tools',        'Grunt - task runner on crack']
+# - ['tools/jshint.md',               'Tools',        'JSHint - keep your code shiny']
+# - ['tools/vagrant.md',              'Tools',        'Vagrant - vms for everything']
+# - ['tools/docker.md',               'Tools',        'Docker - os-ception!']
+# - ['testing/testing.md',            'Testing',      'Testing overview']
+# - ['testing/mocha.md',              'Testing',      'Mocha - tests.should.be.passing']
+# - ['testing/supertest.md',          'Testing',      'Supertest - HTTP request wrapper']
+# - ['testing/mongoose.md',           'Testing',      'Models and Mongoose - SQL-what?']
+# - ['testing/mock_server.md',        'Testing',      'Mock HTTP Server - test servers are fun']
+# - ['deployment/deployment.md',      'Deploy',      'Deployment overview']
+# - ['deployment/grunt.md',           'Deploy',      'Grunt-ing along...']
+# - ['deployment/mongo_instance.md',  'Deploy',      'Bringing up a UserDB']
+# - ['deployment/workflow.md',        'Deploy',      'Workflow - effortless change']
+# - ['advanced/docker.md',            'Advanced',     'Exploiting Docker for fun and profit']
+# - ['advanced/passwords.md',         'Advanced',     'Storing P4$$W0RD5']
+- ['dummy.md',                      'Dummypage']
+theme: cosmo
 docs_dir: docs
 site_dir: public/v0/docs

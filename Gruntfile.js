@@ -104,6 +104,9 @@ module.exports = function(grunt) {
     // Custom tasks ...
     //
 
+    // Tasks for our developer MongoDB Vagrant VM + Docker Image
+    var mongo_tasks = require("./grunt_tasks/mongo_tasks.js")(grunt);
+
     // Create a custom task which goes and runs any tests as outlined in the package.json
     // file under the `scripts` key. I opted for this route as opposed to the one which 
     // creates a MakeFile since this seemed more universal.
@@ -133,71 +136,6 @@ module.exports = function(grunt) {
         // TODO: Maybe we need a plugin to install mkdocs??
         exec("mkdocs build", function(error, stdout) {
             grunt.log.write(stdout);
-            callback(error);
-        });
-    });
-
-    // Custom task to get the test and user db up and running before
-    // we jump into development etc...
-    grunt.registerTask("mongo_setup", function() {
-        var callback = this.async();
-        Async.series([
-            function validate_requirements(next) {
-                // TODO: Verify that vagrant is installed
-                // TODO: Verify that virtualbox is installed
-                next();
-            },
-            function bringup_vagrant(next) {
-                exec("vagrant up", {cwd: "./services/mongodb"}, function(error, stdout) {
-                    grunt.log.write(stdout);
-                    exec("vagrant provision", {cwd: "./services/mongodb"}, function(error, stdout) {
-                        grunt.log.write("\n");
-                        grunt.log.write(stdout);
-                        next(error);
-                    });
-                });
-            }
-        ], function(error) {
-            callback(error);
-        });
-    });
-
-    // Custom task to shutdown vm w/ mongo container
-    grunt.registerTask("mongo_cleanup", function() {
-        var callback = this.async();
-        Async.series([
-            function validate_requirements(next) {
-                // TODO: Verify that vagrant is installed
-                // TODO: Verify that virtualbox is installed
-                next();
-            },
-            function halt_vagrant(next) {
-                exec("vagrant halt", {cwd: "./services/mongodb"}, function(error, stdout) {
-                    grunt.log.write(stdout);
-                    next(error);
-                });
-            }
-        ], function(error) {
-            callback(error);
-        });
-    });
-
-    // Custom task to destroy vm for mongo container
-    grunt.registerTask("mongo_destroy", function() {
-        var callback = this.async();
-        Async.series([
-            function validate_requirements(next) {
-                // TODO: Verify that vagrant is installed
-                // TODO: Verify that virtualbox is installed
-                next();
-            },
-            function reset_vagrant(next) {
-                exec("vagrant destroy -f", {cwd: "./services/mongodb"}, function(error, stdout) {
-                    grunt.log.write(stdout);
-                    next(error);
-                });
-            }
-        ], function(error) {
             callback(error);
         });
     });

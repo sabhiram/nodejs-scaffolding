@@ -33,7 +33,7 @@
 
 ## Introduction
 
-There are a lot of NodeJS "starter" apps out there in the wild, and this is my take on the matter. The things I find that are crucial to any project can be broken down into three categories:
+There are a lot of NodeJS "starter" projects out there in the wild, and this is my take on the matter. The things I find that are crucial to any project can be broken down into three categories:
 
 1. Very low feedback time
 2. Consistent and reproducible
@@ -47,9 +47,29 @@ The goal here is to build a project with the following properties:
 2. Has an easy way to define a coding standard
 3. Has an easy way to define and maintian documentation, versioned with the source code
 4. Contains rules to spin up services like user dbs, ci-automation etc
-5. Provides all the above without (almost) any developer effort!
+5. Provides a simple login / signup user scheme where passwords are securely stored
+6. Provides all the above without (almost) any developer effort!
 
 Sound intresting? Then read long with the rest of the documentation.
+
+---
+
+## Expectations
+
+What this is **NOT**:
+
+1. Perfect
+2. Final
+3. Production worthy
+4. Bug free
+
+What this **is**:
+
+1. A conglomeration of useful tools, and best practices
+2. A project to clone and borrow ideas from
+3. A place where I can learn from other developer's suggestions
+
+---
 
 If you are seeing this page from a self-hosted version of this documentation, then you have already pulled this project, run through the setup, and have a server running! Feel free to skip ahead to the [Tools](dummy.md) section.
 

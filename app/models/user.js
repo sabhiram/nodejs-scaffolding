@@ -8,7 +8,7 @@ var
     bcrypt          = require("bcrypt"),
     
     // Other utils
-    Async           = require("async"),
+    async           = require("async"),
 
     // Globals
     SALT_FACTOR     = 10;
@@ -43,7 +43,7 @@ UserSchema.pre("save", function(callback) {
     }
     
     // Store the p/w after hashing it
-    Async.waterfall([
+    async.waterfall([
         // Generate salt
         function generate_salt(next) {
             bcrypt.genSalt(SALT_FACTOR, next);

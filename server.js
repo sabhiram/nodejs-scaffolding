@@ -83,19 +83,19 @@ var helpers = require("./app/helper_functions.js"),
         },
         user: {
             login: function(request, response, next) {
-                passport.authenticate('local', function(error, user, info) {
+                passport.authenticate("local", function(error, user, info) {
                     if(error) {
                         return next(error);
                     }
                     if(!user) {
                         request.session.messages = [info.message];
-                        return response.redirect('/login');
+                        return response.redirect("/login");
                     }
                     request.logIn(user, function(error) {
                         if(error) {
                             return next(error);
                         }
-                        return response.redirect('/account');
+                        return response.redirect("/account");
                     });
                 })(request, response, next);
             },
@@ -104,7 +104,7 @@ var helpers = require("./app/helper_functions.js"),
                 request.logout();
 
                 // Redirect to the home page
-                response.redirect('/');
+                response.redirect("/");
             }
         }
     },

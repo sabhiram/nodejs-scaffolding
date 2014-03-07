@@ -31,7 +31,7 @@ module.exports = function(app, passport) {
 
         // Setup server side template engine
         app.set("view engine", "ejs");
-        app.engine('ejs', require('ejs-locals'));
+        app.engine("ejs", require("ejs-locals"));
         
         app.set("views", views_dir);
     });

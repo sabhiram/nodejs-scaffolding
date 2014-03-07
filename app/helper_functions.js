@@ -13,7 +13,7 @@ module.exports = {
     \*****************************************************************************/
     append_all: function() {
         if(arguments.length > 0) {
-            // "apply" the concat function to '[]' (param1) and pass
+            // "apply" the concat function to "[]" (param1) and pass
             // in the array of args to the concat function.
             return [].concat.apply([], arguments);
         }

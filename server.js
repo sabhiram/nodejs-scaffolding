@@ -56,6 +56,10 @@ var logs_path = path.join(__dirname, "logs");
 var log = require("./app/logger.js")(logs_path);
 
 
+// Configure passport to use the local strategy etc
+var passport = require("./app/config/passport.config");
+
+
 /*****************************************************************************\
     Application Globals
 \*****************************************************************************/
@@ -120,20 +124,13 @@ var helpers = require("./app/helper_functions.js"),
 // Connect to the user db using mongoose
 mongoose.connect("mongodb://172.12.8.155/userdb");
 
-
-// Configure passport to use the local strategy etc
-var passport = require("./app/config/passport.config");
-
-
 // Create and configure an express app
 var app = require("./app/config/app.config")(express(), passport);
-
 
 // Configure application routes and fetch our API object which
 // just contains the TYPE, url and description of the things
 // we implement.
 require("./app/routes.js")(app, passport, middleware, handlers);
-
 
 // Launch Server
 app.listen(args.port);

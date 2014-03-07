@@ -6,8 +6,8 @@ var
     //     a web application"s routes, etc
     express         = require("express"),
     
-    public_dir      = path.join("./", "public"),
-    views_dir       = path.join("./", "views");
+    public_dir      = path.join("./", "app", "public"),
+    views_dir       = path.join("./", "app", "views");
 
 module.exports = function(app, passport) {
     // Configure express application

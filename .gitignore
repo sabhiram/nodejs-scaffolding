@@ -1,6 +1,6 @@
 node_modules/
 logs/
-public/v0/
+app/public/v0.0.1/docs
 services/mongodb/.vagrant/
 services/mongodb/db/
 blog_stuff

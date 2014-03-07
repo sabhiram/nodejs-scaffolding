@@ -26,4 +26,4 @@ pages:
 - ['dummy.md',                      'Dummypage']
 theme: cosmo
 docs_dir: docs
-site_dir: public/v0/docs
+site_dir: app/public/v0.0.1/docs

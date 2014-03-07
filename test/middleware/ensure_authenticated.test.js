@@ -64,7 +64,7 @@ describe("Middleware Tests: Ensure Authenticated", function() {
                         url:            "/target",
                         return_code:    200,
                         return_message: "TARGET",
-                        middleware: [auth]
+                        middleware:     [auth]
                     },
                     {
                         url:            "/login",

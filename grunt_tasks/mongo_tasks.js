@@ -1,6 +1,6 @@
 var
-    exec                    = require("child_process").exec,
-    Async                   = require("async");
+    exec    = require("child_process").exec,
+    async   = require("async");
 
 module.exports = function(grunt) {
 
@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     // we jump into development etc...
     grunt.registerTask("mongo_setup", function() {
         var callback = this.async();
-        Async.series([
+        async.series([
             function validate_requirements(next) {
                 // TODO: Verify that vagrant is installed
                 // TODO: Verify that virtualbox is installed
@@ -32,7 +32,7 @@ module.exports = function(grunt) {
     // Custom task to shutdown vm w/ mongo container
     grunt.registerTask("mongo_cleanup", function() {
         var callback = this.async();
-        Async.series([
+        async.series([
             function validate_requirements(next) {
                 // TODO: Verify that vagrant is installed
                 // TODO: Verify that virtualbox is installed
@@ -52,7 +52,7 @@ module.exports = function(grunt) {
     // Custom task to destroy vm for mongo container
     grunt.registerTask("mongo_destroy", function() {
         var callback = this.async();
-        Async.series([
+        async.series([
             function validate_requirements(next) {
                 // TODO: Verify that vagrant is installed
                 // TODO: Verify that virtualbox is installed

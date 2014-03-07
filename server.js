@@ -22,8 +22,12 @@ var
     //     A web framework for node, provides easy ways to manage 
     //     a web application"s routes, etc
     express         = require("express"),
+
+    // Load the user model
+    User            = require("./app/models/user"),
     
     // Other commonly used NodeJS modules
+    mongoose        = require("mongoose"),
     util            = require("util"),
     fs              = require("fs"),
     path            = require("path");
@@ -42,6 +46,8 @@ var
 if(!fs.existsSync("./logs")) {
     fs.mkdirSync("./logs");
 }
+
+
 // Since we have a common logs folder for our logs, we can encapsulate
 // the loggers settings in a logger.js file, and pass the path to the
 // logs dir while requiring the logger module. This way all modules
@@ -53,64 +59,97 @@ var log = require("./app/logger.js")(logs_path);
 /*****************************************************************************\
     Application Globals
 \*****************************************************************************/
-var helpers         = require("./app/helper_functions.js"),
-    args            = {
+var helpers = require("./app/helper_functions.js"),
+    args = {
         port:       process.env.PORT || 1234,
         version:    "0.0.1",
         name:       "NodeJS Scaffolding"
     },
-    handlers        = {
+    handlers = {
         view: {
             home: function(request, response) {
-                response.send(200, "Hello from the home page!");
+                response.render("index", { user: request.user });
             },
             login: function(request, response) {
-                response.send(200, "Hello from the login page!");
+                response.render("login", { user: request.user, message: request.session.messages });
+            },
+            account: function(request, response) {
+                response.render("account", { user: request.user });
             },
             error: function(request, response) {
-                log.warn('404 page invoked due to some error!');
+                log.warn("404 page invoked due to some error!");
                 response.send(404, "Umm, this is an error page... what the heck are you looking for?");
             },
+        },
+        user: {
+            login: function(request, response, next) {
+                passport.authenticate('local', function(error, user, info) {
+                    if(error) {
+                        return next(error);
+                    }
+                    if(!user) {
+                        request.session.messages = [info.message];
+                        return response.redirect('/login');
+                    }
+                    request.logIn(user, function(error) {
+                        if(error) {
+                            return next(error);
+                        }
+                        return response.redirect('/account');
+                    });
+                })(request, response, next);
+            },
+            logout: function(request, response) {
+                // Log the authenticated user out of the system
+                request.logout();
+
+                // Redirect to the home page
+                response.redirect('/');
+            }
         }
     },
-    middleware      = {
-        passthrough: require("./app/middleware/passthrough")
+    middleware = {
+        passthrough:            require("./app/middleware/passthrough"),
+        ensure_authenticated:   require("./app/middleware/ensure_authenticated")
     };
 
 
 /*****************************************************************************\
     Initialize Server
 \*****************************************************************************/
-var app = express();
+// Connect to the user db using mongoose
+mongoose.connect("mongodb://172.12.8.155/userdb");
 
-// Configure express application
-app.configure(function() {
-    // Setup app preferences
-    app.use(express.cookieParser());
 
-    // Setup public visible hosted files
-    app.use(express.static(path.join(__dirname, 'public')));
+// Configure passport to use the local strategy etc
+var passport = require("./app/config/passport.config");
 
-    // There is an issue which prevents express from using the bodyParser since
-    // they have not migrated to Connect 3.0. See this post for more details:
-    // http://stackoverflow.com/questions/19581146/how-to-get-rid-of-connect-3-0-deprecation-alert
-    // app.use(express.bodyParser()); /* becomes */
-    app.use(express.json());
-    app.use(express.urlencoded());
 
-    // Setup server side template engine
-    app.set("view engine", "ejs");
-});
+// Create and configure an express app
+var app = require("./app/config/app.config")(express(), passport);
+
 
 // Configure application routes and fetch our API object which
 // just contains the TYPE, url and description of the things
 // we implement.
-require("./app/routes.js")(app, middleware, handlers);
+require("./app/routes.js")(app, passport, middleware, handlers);
+
 
 // Launch Server
 app.listen(args.port);
 log.info("Server up at: " + new Date());
 log.info("... running on port: " + args.port);
+
+
+// Test code to add / remove users.
+// (new User({username: "phil", password: "secret", email: "phil@email.com"})).save(function(error) {
+//     if(error) console.log(error);
+//     else console.log("Saved user phil");
+// });
+// User.remove({}, function(error) {
+//     // REMOVED ALL USERS
+// });
+
 
 // This is done so that we can require, and test this app
 module.exports = app;

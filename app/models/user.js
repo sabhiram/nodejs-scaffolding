@@ -1,21 +1,10 @@
 var
-    // mongoose - 
-    //     A node module to interface w/ mongoDB
-    mongoose        = require("mongoose"),
-    
-    // bcrypt -
-    //     Someone say crypto?
-    bcrypt          = require("bcrypt"),
-    
-    // Other utils
+    Mongoose        = require("mongoose"),
+    Bcrypt          = require("bcrypt"),
     Async           = require("async"),
-
-    // Globals
     SALT_FACTOR     = 10;
 
-
-// Define the user schema
-var UserSchema = mongoose.Schema({
+var UserSchema = Mongoose.Schema({
     username: {
         type:       String,
         required:   true,
@@ -26,46 +15,42 @@ var UserSchema = mongoose.Schema({
         required:   true,
         unique:     true
     },
-    password: {
+    crypted_pw: {
         type:       String,
         required:   true
     }
 });
 
-// Attach a custom handler on the save event which hashes
-// the users password if it has changed
 UserSchema.pre("save", function(callback) {
     var _current_user = this;
 
     // Do nothing if the p/w is the same
-    if(_current_user.isModified("password") === false) {
+    if(_current_user.isModified("crypted_pw") === false) {
         return callback();
     }
-    
+
     // Store the p/w after hashing it
     Async.waterfall([
         // Generate salt
         function generate_salt(next) {
-            bcrypt.genSalt(SALT_FACTOR, next);
+            Bcrypt.genSalt(SALT_FACTOR, next);
         },
         function hash_pw(salt, next) {
-            bcrypt.hash(_current_user.password, salt, next);
+            Bcrypt.hash(_current_user.crypted_pw, salt, next);
         },
         function set_pw(hash, next) {
-            _current_user.password = hash;
+            _current_user.crypted_pw = hash;
             next();
-        },
+        }
     ], function(error, result) {
         callback(error);
     });
 });
 
-// Define a compare_password method which allows us to check a
-// password attempt against the user database with ease.
 UserSchema.methods.compare_password = function(password_attempt, callback) {
-    bcrypt.compare(password_attempt, this.password, function(error, match) {
+    Bcrypt.compare(password_attempt, this.crypted_pw, function(error, match) {
         callback(error, match);
     });
 };
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = Mongoose.model("User", UserSchema);

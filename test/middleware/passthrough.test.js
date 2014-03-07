@@ -5,7 +5,7 @@ var
 //
 // Test group to validate the passthrough function
 //
-describe("Passthrough Middleware Tests", function() {
+describe("Middleware Tests: Passthrough", function() {
     var
         passthrough;
 
@@ -43,7 +43,7 @@ describe("Passthrough Middleware Tests", function() {
     });
 
     // Group to validate passthrough with the Mock HTTP Server
-    describe("MockServer Middleware Tests", function() {
+    describe("Mock HTTP Server", function() {
         var app,
             server,
             mock_http_server;

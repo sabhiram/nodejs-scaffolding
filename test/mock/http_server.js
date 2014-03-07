@@ -3,10 +3,19 @@
 \*****************************************************************************/
 var
     express     = require("express"),
-    _           = require("underscore")._;
+    _           = require("underscore")._
+    passport    = require("passport");
 
 function MockServer(routes) {
     this.app = express();
+    // Setup app preferences
+    this.app.use(express.cookieParser());
+    this.app.use(express.json());
+    this.app.use(express.urlencoded());
+    this.app.use(express.session({secret: "somesecret"}));
+    this.app.use(passport.initialize());
+    this.app.use(passport.session());
+
     for(var http_type in routes) {
         _.each(routes[http_type], function(route) {
             var url         = route.url;

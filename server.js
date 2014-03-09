@@ -75,7 +75,10 @@ var helpers = require("./app/helper_functions.js"),
                 response.render("index", { user: request.user });
             },
             login: function(request, response) {
-                response.render("login", { user: request.user, message: request.session.messages });
+                response.render("login", { user: request.user, messages: request.session.messages });
+            },
+            signup: function(request, response) {
+                response.render("signup", { messages: request.session.messages });
             },
             account: function(request, response) {
                 response.render("account", { user: request.user });
@@ -102,6 +105,30 @@ var helpers = require("./app/helper_functions.js"),
                         return response.redirect("/account");
                     });
                 })(request, response, next);
+            },
+            signup: function(request, response, next) {
+                var user_info = request.body;
+                // This is horrendous... fix this eventually
+                if(!user_info.password_1.match(user_info.password_2)) {
+                    console.log(util.inspect(user_info));
+                    request.session.messages = ["Provided passwords do not match! Try again!"];
+                    return response.redirect("/signup");
+                }
+                new_user = new User({
+                    username: user_info.username,
+                    email: user_info.email,
+                    password: user_info.password_1
+                });
+                new_user.save(function(error) {
+                    if(!error) {
+                        console.log("New user " + request.body.username + " saved");
+                        return response.redirect("/account");
+                    } else {
+                        console.log(error);
+                        request.session.messages = ["Error saving user to db.", error.err];
+                        return response.redirect("/signup");
+                    }
+                });
             },
             logout: function(request, response) {
                 // Log the authenticated user out of the system

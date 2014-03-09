@@ -13,6 +13,7 @@ module.exports = function(app, passport, middleware, handlers) {
     //                            |                                      |                                 |
     // User login pages           |                                      |                                 |
     app.get(                "/login",               middleware.passthrough,              handlers.view.login );
+    app.get(               "/signup",               middleware.passthrough,             handlers.view.signup );
     //                            |                                      |                                 |
     // User account page          |                                      |                                 |
     app.get(              "/account",      middleware.ensure_authenticated,            handlers.view.account );
@@ -22,6 +23,7 @@ module.exports = function(app, passport, middleware, handlers) {
     // User actions               |                                      |                                 |
     app.get(               "/logout",               middleware.passthrough,             handlers.user.logout );
     app.post(               "/login",               middleware.passthrough,              handlers.user.login );
+    app.post(              "/signup",               middleware.passthrough,             handlers.user.signup );
     //                            |                                      |                                 |
     //                            |                                      |                                 |
     // 404 - *MUST* be last       |                                      |                                 |

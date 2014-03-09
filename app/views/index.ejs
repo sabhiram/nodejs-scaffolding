@@ -1,6 +1,28 @@
-<% layout('layout') -%>
-<% if (!user) { %>
-    <h2>Welcome! Please log in.</h2>
-<% } else { %>
-    <h2>Hello, <%= user.username %>.</h2>
-<% } %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <title>Home page!</title>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Welcome</h1>
+    Visit one of these links to get started:
+    <a href="/login">Login</a> | <a href="/account">Account</a> | <a href="/logout">Logout</a>
+</div>
+
+<script src="/js/bootstrap.min.js"></script>
+
+</body>
+</html>

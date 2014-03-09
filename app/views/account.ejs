@@ -1,4 +1,27 @@
-<% layout('layout') -%>
-<p>Username: <%= user.username %></p>
-<p>Email: <%= user.email %></p>
-<p>P/W: <%= user.password %></p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <title>Welcome, <%= user.username %></title>
+</head>
+<body>
+
+<div class="container">
+    <p>Username: <%= user.username %></p>
+    <p>Email: <%= user.email %></p>
+    <p>P/W: <%= user.password %></p>
+</div>
+
+<script src="/js/bootstrap.min.js"></script>
+
+</body>
+</html>

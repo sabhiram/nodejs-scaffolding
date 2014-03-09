@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
 
-    <title>Login!</title>
+    <title>Sign Up!</title>
 </head>
 <body>
 
@@ -21,20 +21,28 @@
     <p><%= message %></p>
     <% });%>
     <br>
-    <form action="/login" method="post">
+    <form action="/signup" method="post">
         <div>
             <label>Username:</label>
-            <input type="text" name="username" placeholder="or email..."/><br/>
+            <input type="text" name="username" placeholder=""/><br/>
+        </div>
+        <div>
+            <label>Email:</label>
+            <input type="email" name="email" placeholder=""/><br/>
         </div>
         <div>
             <label>Password:</label>
-            <input type="password" name="password"/>
+            <input type="password" name="password_0"/>
+        </div>
+        <div>
+            <label>Password Again:</label>
+            <input type="password" name="password_1"/>
         </div>
         <div>
             <input type="submit" value="Submit"/>
         </div>
     </form>
-    <p>Not a user? <a href="/signup">Sign up!</a></p>
+    <p>Already a user? <a href="/login">Log in</a> instead.</p>
 </div>
 
 <script src="/js/bootstrap.min.js"></script>

@@ -92,14 +92,17 @@ var helpers = require("./app/helper_functions.js"),
             login: function(request, response, next) {
                 passport.authenticate("local", function(error, user, info) {
                     if(error) {
+                        log.error("Authentication error: " + error);
                         return next(error);
                     }
                     if(!user) {
                         request.session.messages = [info.message];
+                        log.info("Invalid username, routing to /login");
                         return response.redirect("/login");
                     }
                     request.logIn(user, function(error) {
                         if(error) {
+                            log.error("Login error: " + error);
                             return next(error);
                         }
                         return response.redirect("/account");
@@ -110,21 +113,20 @@ var helpers = require("./app/helper_functions.js"),
                 var user_info = request.body;
                 // This is horrendous... fix this eventually
                 if(!user_info.password_1.match(user_info.password_2)) {
-                    console.log(util.inspect(user_info));
                     request.session.messages = ["Provided passwords do not match! Try again!"];
                     return response.redirect("/signup");
                 }
-                new_user = new User({
+                var new_user = new User({
                     username: user_info.username,
                     email: user_info.email,
                     password: user_info.password_1
                 });
                 new_user.save(function(error) {
                     if(!error) {
-                        console.log("New user " + request.body.username + " saved");
+                        log.info("New user " + request.body.username + " saved");
                         return response.redirect("/account");
                     } else {
-                        console.log(error);
+                        log.error(error);
                         request.session.messages = ["Error saving user to db.", error.err];
                         return response.redirect("/signup");
                     }
@@ -159,20 +161,22 @@ var app = require("./app/config/app.config")(express(), passport);
 // we implement.
 require("./app/routes.js")(app, passport, middleware, handlers);
 
+
 // Launch Server
 app.listen(args.port);
 log.info("Server up at: " + new Date());
-log.info("... running on port: " + args.port);
+log.info("... waiting on port: " + args.port);
 
 
-// Test code to add / remove users.
-// (new User({username: "phil", password: "secret", email: "phil@email.com"})).save(function(error) {
-//     if(error) console.log(error);
-//     else console.log("Saved user phil");
-// });
 // User.remove({}, function(error) {
 //     // REMOVED ALL USERS
 // });
+log.info("Current User List:");
+User.find({}, function(error, users) {
+    users.forEach(function(user) {
+        log.info("*-- %s (%s)", user.username, user.email);
+    });
+});
 
 
 // This is done so that we can require, and test this app

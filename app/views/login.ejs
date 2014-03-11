@@ -21,22 +21,66 @@
     <p><%= message %></p>
     <% });%>
     <br>
-    <form action="/login" method="post">
-        <div>
-            <label>Username:</label>
-            <input type="text" name="username" placeholder="or email..."/><br/>
-        </div>
-        <div>
-            <label>Password:</label>
-            <input type="password" name="password"/>
-        </div>
-        <div>
-            <input type="submit" value="Submit"/>
-        </div>
-    </form>
-    <p>Not a user? <a href="/signup">Sign up!</a></p>
-</div>
 
+    <!--
+        Inspiration for this form layout comes from 
+        http://wrapbootstrap.com/preview/WB0G8810G 
+    -->
+
+    <!-- Container for the login form and its various tabs -->
+    <div class="ns-form-section">
+        <!-- Main section with the fields needed / buttons etc -->
+        <div class="ns-form-content animated bounceIn" data-animation="bounceIn">
+
+            <form action="/login" method="post" class="ns-form">
+                <!-- Title for this form -->
+                <div class="ns-section-title" align="center">
+                    <h3>Login</h3>
+                </div>
+
+                <!-- Username field -->
+                <div class="ns-input-container container">
+                    <div class="ns-input-group row">
+                        <span class="col-xs-1"><i class="fa-user fa"></i></span>
+                        <div class="col-xs-11"><input type="text" required="required" placeholder="Username" name="username"/></div>
+                    </div>
+                    <div class="ns-input-group row">
+                        <span class="col-xs-1"><i class="fa-key fa"></i></span>
+                        <div class="col-xs-11"><input type="password" required="required" placeholder="Password" name="password"/></div>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-submit">Login</button>
+                    </div>
+                </div>
+            </form> 
+
+        </div>
+    </div>
+
+
+    <!-- Container for the login form and its various tabs -->
+    <div class="ns-form-section">
+        
+        <!-- New user signup -->
+        <div class="animated fadeIn" data-animation="fadeIn">
+            <p>Not a user? <a href="/signup">Sign up!</a></p>
+        </div>
+        
+    </div>
+
+    <!-- Container for the login form and its various tabs -->
+    <div class="ns-form-section">
+        
+        <!-- New user signup -->
+        <div class="animated fadeIn" data-animation="fadeIn">
+            <p>Forgot your password? <a href="/resetpw">Click Here</a></p>
+        </div>
+        
+    </div>
+
+    
+</div>
+<script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 
 </body>

@@ -1,4 +1,7 @@
-module.exports = function(log, User, passport) {
+var
+    User = require("../models/user");
+
+module.exports = function(log, passport) {
     return {
         login: function(request, response, next) {
             passport.authenticate("local", function(error, user, info) {

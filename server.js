@@ -72,7 +72,7 @@ var
     },
     handlers = {
         view:                   require("./app/route_handlers/view")(log),
-        user:                   require("./app/route_handlers/user")(log, User, passport)
+        user:                   require("./app/route_handlers/user")(log, passport)
     },
     middleware = {
         passthrough:            require("./app/middleware/passthrough"),

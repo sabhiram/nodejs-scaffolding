@@ -63,83 +63,16 @@ var passport = require("./app/config/passport.config");
 /*****************************************************************************\
     Application Globals
 \*****************************************************************************/
-var helpers = require("./app/helper_functions.js"),
+var
+    helpers = require("./app/helper_functions.js"),
     args = {
-        port:       process.env.PORT || 1234,
-        version:    "0.0.1",
-        name:       "NodeJS Scaffolding"
+        port:                   process.env.PORT || 1234,
+        version:                "0.0.1",
+        name:                   "NodeJS Scaffolding"
     },
     handlers = {
-        view: {
-            home: function(request, response) {
-                response.render("index", { user: request.user });
-            },
-            login: function(request, response) {
-                response.render("login", { user: request.user, messages: request.session.messages });
-            },
-            signup: function(request, response) {
-                response.render("signup", { messages: request.session.messages });
-            },
-            account: function(request, response) {
-                response.render("account", { user: request.user });
-            },
-            error: function(request, response) {
-                log.warn("404 page invoked due to some error!");
-                response.send(404, "Umm, this is an error page... what the heck are you looking for?");
-            },
-        },
-        user: {
-            login: function(request, response, next) {
-                passport.authenticate("local", function(error, user, info) {
-                    if(error) {
-                        log.error("Authentication error: " + error);
-                        return next(error);
-                    }
-                    if(!user) {
-                        request.session.messages = [info.message];
-                        log.info("Invalid username, routing to /login");
-                        return response.redirect("/login");
-                    }
-                    request.logIn(user, function(error) {
-                        if(error) {
-                            log.error("Login error: " + error);
-                            return next(error);
-                        }
-                        return response.redirect("/account");
-                    });
-                })(request, response, next);
-            },
-            signup: function(request, response, next) {
-                var user_info = request.body;
-                // This is horrendous... fix this eventually
-                if(!user_info.password_1.match(user_info.password_2)) {
-                    request.session.messages = ["Provided passwords do not match! Try again!"];
-                    return response.redirect("/signup");
-                }
-                var new_user = new User({
-                    username: user_info.username,
-                    email: user_info.email,
-                    password: user_info.password_1
-                });
-                new_user.save(function(error) {
-                    if(!error) {
-                        log.info("New user " + request.body.username + " saved");
-                        return response.redirect("/account");
-                    } else {
-                        log.error(error);
-                        request.session.messages = ["Error saving user to db.", error.err];
-                        return response.redirect("/signup");
-                    }
-                });
-            },
-            logout: function(request, response) {
-                // Log the authenticated user out of the system
-                request.logout();
-
-                // Redirect to the home page
-                response.redirect("/");
-            }
-        }
+        view:                   require("./app/route_handlers/view")(log),
+        user:                   require("./app/route_handlers/user")(log, User, passport)
     },
     middleware = {
         passthrough:            require("./app/middleware/passthrough"),

@@ -4,7 +4,8 @@
   "description": "NodeJS starter project with Express",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node server.js"
   },
   "keywords": [
     "NodeJS",

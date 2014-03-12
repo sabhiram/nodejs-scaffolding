@@ -113,7 +113,9 @@ module.exports = function(grunt) {
     // More info: http://stackoverflow.com/questions/10753288/how-to-specify-test-directory-for-mocha
     grunt.registerTask("run_mocha_tests", function() {
         var callback = this.async();
-        exec("mocha", function(error, stdout) {
+        // Note: Using npm test here so that I have a single place (package.json), to
+        // define what "run some tests" means.
+        exec("npm test", function(error, stdout) {
             grunt.log.write(stdout);
             callback(error);
         });

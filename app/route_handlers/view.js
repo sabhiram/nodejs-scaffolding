@@ -1,7 +1,7 @@
 module.exports = function(log) {
     return {
         home: function(request, response) {
-            response.render("index", { user: request.user });
+            response.render("index", { user: request.user, messages: request.session.messages });
         },
         login: function(request, response) {
             response.render("login", { user: request.user, messages: request.session.messages });
@@ -10,7 +10,8 @@ module.exports = function(log) {
             response.render("signup", { messages: request.session.messages });
         },
         account: function(request, response) {
-            response.render("account", { user: request.user });
+            console.log("Routing to account page");
+            response.render("account", { user: request.user, messages: request.session.messages });
         },
         error: function(request, response) {
             log.warn("404 page invoked due to some error!");

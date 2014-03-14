@@ -9,7 +9,7 @@ body {
 
 .ns-form-section {
     width: 100%;
-    max-width: 360px;
+    max-width: 368px;
     margin: 0 auto 0 auto;
     background-color: white;
     -o-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
@@ -20,8 +20,87 @@ body {
     padding: 6px 6px 6px 6px;
     margin-top: 4px;
 }
+.ns-fade-in-0 {
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+       -moz-animation: fadein 2s; /* Firefox */
+        -ms-animation: fadein 2s; /* Internet Explorer */
+         -o-animation: fadein 2s; /* Opera */
+            animation: fadein 2s;
+}
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
 
-.ns-form-content {
+/* Firefox */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari and Chrome */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}​
+
+/* Opera */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}​
+
+.ns-input-container {
+    padding: 6px 6px 6px 6px;
     
 }
 
+.ns-input-group {
+    padding: 10px 0 10px 0;
+    overflow: hidden;
+}
+.ns-submit-group {
+    padding: 10px 0 10px 0;
+
+}
+
+/*The icon to the left of the input field*/
+.ns-input-icon {
+    background-color: white;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid black;
+    border-right: none;
+}
+/*The Input field itself*/
+.ns-input-field {
+    border: 1px solid black;
+    border-left: none;
+    padding: 0;
+}
+/*Force the input field to full size*/
+.ns-input-field input {
+    width: 100%;
+    border: none;
+    height: 38px;
+    padding: 0;
+    padding-left: 10px;
+    padding-top: 2px;
+    margin: none;
+}
+.ns-btn {
+    height: 38px;
+    width: 92px;
+    border-radius: 0;
+}
+
+
+input {
+    outline: none;
+}

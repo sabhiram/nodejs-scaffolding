@@ -15,73 +15,144 @@
 </head>
 <body>
 
-<div class="container">
-    <% messages = messages || []; %>
-    <% messages.forEach(function(message) { %>
-    <p><%= message %></p>
-    <% });%>
-    <br>
+    <div class="container">
+        <!--
+            Inspiration for this form layout comes from 
+            http://wrapbootstrap.com/preview/WB0G8810G 
+        -->
+        <% messages = messages || []; %>
+        <% messages.forEach(function(message) { %>
+        <p><%= message %></p>
+        <% });%>
+        <br>
 
-    <!--
-        Inspiration for this form layout comes from 
-        http://wrapbootstrap.com/preview/WB0G8810G 
-    -->
+        <!-- Container for the login form and its various tabs -->
+        <div class="ns-form-section ns-fade-in-0">
+            <!-- Main section with the fields needed / buttons etc -->
+            <div class="ns-form-content">
 
-    <!-- Container for the login form and its various tabs -->
-    <div class="ns-form-section">
-        <!-- Main section with the fields needed / buttons etc -->
-        <div class="ns-form-content animated bounceIn" data-animation="bounceIn">
-
-            <form action="/login" method="post" class="ns-form">
-                <!-- Title for this form -->
-                <div class="ns-section-title" align="center">
-                    <h3>Login</h3>
-                </div>
-
-                <!-- Username field -->
-                <div class="ns-input-container container">
-                    <div class="ns-input-group row">
-                        <span class="col-xs-1"><i class="fa-user fa"></i></span>
-                        <div class="col-xs-11"><input type="text" required="required" placeholder="Username" name="username"/></div>
+                <form action="/login" method="post" class="ns-form">
+                    <div class="ns-input-container">
+                        <div class="ns-input-group row">
+                            <div class="col-xs-1"></div>
+                            <div class="col-xs-1 ns-input-icon"><i class="fa-user fa"></i></div>
+                            <div class="col-xs-9 ns-input-field"><input class="ns-text-input" type="text" required="required" placeholder="Username" name="username"/></div>
+                            <div class="col-xs-1"></div>
+                        </div>
+                        <div class="ns-input-group row">
+                            <div class="col-xs-1"></div>
+                            <div class="col-xs-1 ns-input-icon"><i class="fa-key fa"></i></div>
+                            <div class="col-xs-9 ns-input-field"><input class="ns-text-input" type="password" required="required" placeholder="Password" name="password"/></div>
+                            <div class="col-xs-1"></div>
+                        </div>
+                        <div class="ns-submit-group row">
+                            <div class="col-xs-1"></div>
+                            <div class="col-xs-8 row" style="padding-top: 8px;">
+                                <div class="col-xs-1"><input type="checkbox" name="remember_me"></div>
+                                <div class="col-xs-9">Remember Me!</div>
+                            </div>
+                            <button class="btn btn-primary ns-btn col-xs-3" type="submit" >Login</button>
+                        </div>
                     </div>
-                    <div class="ns-input-group row">
-                        <span class="col-xs-1"><i class="fa-key fa"></i></span>
-                        <div class="col-xs-11"><input type="password" required="required" placeholder="Password" name="password"/></div>
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-submit">Login</button>
-                    </div>
-                </div>
-            </form> 
+                </form> 
 
+            </div>
         </div>
-    </div>
 
 
-    <!-- Container for the login form and its various tabs -->
-    <div class="ns-form-section">
-        
-        <!-- New user signup -->
-        <div class="animated fadeIn" data-animation="fadeIn">
-            <p>Not a user? <a href="/signup">Sign up!</a></p>
+        <!-- Container for the login form and its various tabs -->
+        <div class="ns-form-section">
+            
+            <!-- New user signup -->
+            <div>
+                <p>Don't have an account yet? <a href="/signup">Sign up!</a></p>
+            </div>
+            
         </div>
-        
-    </div>
 
-    <!-- Container for the login form and its various tabs -->
-    <div class="ns-form-section">
-        
-        <!-- New user signup -->
-        <div class="animated fadeIn" data-animation="fadeIn">
-            <p>Forgot your password? <a href="/resetpw">Click Here</a></p>
-        </div>
-        
-    </div>
+        <!-- Container for the login form and its various tabs -->
+        <div class="ns-form-section">
+            
+            <!-- New user signup -->
+            <div>
+                <p>Forgot your password? <a href="/resetpw">Click Here</a></p>
+            </div>
+            
+        </div>    
+    </div>  
 
-    
-</div>
-<script src="/js/jquery.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+
+    <script>
+        // On document ready...
+        $(function() {
+            console.log('Page onReady()');
+        });
+
+        $(".ns-text-input").on("focusin", function() {
+            var target = $(this).parent().parent();
+            target.css("background-color", "#dddddd");
+            target.css("border-right", "4px solid #2222dd");
+            target.css("border-left", "4px solid #2222dd");
+        });
+        $(".ns-text-input").on("focusout", function() {
+            var target = $(this).parent().parent();
+            target.css("background-color", "transparent");
+            target.css("border-right", "none");
+            target.css("border-left", "none");
+        });
+
+
+    </script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

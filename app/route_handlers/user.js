@@ -38,6 +38,7 @@ module.exports = function(log, passport) {
             new_user.save(function(error) {
                 if(!error) {
                     log.info("New user " + request.body.username + " saved");
+                    request.session.messages = ["Account created, please login to continue!"];
                     return response.redirect("/account");
                 } else {
                     log.error(error);

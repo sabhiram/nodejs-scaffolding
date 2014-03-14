@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="NodeScaffold">
 
 <head>
     <meta charset="utf-8">
@@ -11,23 +11,19 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
 
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/angular-animate.min.js"></script>
+    <script src="/js/login_controller.js"></script>
     <title>Login!</title>
 </head>
 <body>
 
-    <div class="container">
-        <!--
-            Inspiration for this form layout comes from 
-            http://wrapbootstrap.com/preview/WB0G8810G 
-        -->
-        <% messages = messages || []; %>
-        <% messages.forEach(function(message) { %>
-        <p><%= message %></p>
-        <% });%>
-        <br>
-
+    <!-- Style inspired in part by: http://wrapbootstrap.com/preview/WB0G8810G  -->
+    <div class="container" ng-controller="LoginController">
+        
         <!-- Container for the login form and its various tabs -->
-        <div class="ns-form-section ns-fade-in-0">
+        <div class="ns-form-section" id="input_login_form"> 
+        
             <!-- Main section with the fields needed / buttons etc -->
             <div class="ns-form-content">
 
@@ -55,7 +51,6 @@
                         </div>
                     </div>
                 </form> 
-
             </div>
         </div>
 
@@ -83,7 +78,6 @@
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-
 
     <script>
         // On document ready...

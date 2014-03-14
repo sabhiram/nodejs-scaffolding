@@ -20,41 +20,6 @@ body {
     padding: 6px 6px 6px 6px;
     margin-top: 4px;
 }
-.ns-fade-in-0 {
-    -webkit-animation: fadein 2s; /* Safari and Chrome */
-       -moz-animation: fadein 2s; /* Firefox */
-        -ms-animation: fadein 2s; /* Internet Explorer */
-         -o-animation: fadein 2s; /* Opera */
-            animation: fadein 2s;
-}
-@keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Firefox */
-@-moz-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Safari and Chrome */
-@-webkit-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Internet Explorer */
-@-ms-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}​
-
-/* Opera */
-@-o-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}​
 
 .ns-input-container {
     padding: 6px 6px 6px 6px;
@@ -99,7 +64,6 @@ body {
     width: 92px;
     border-radius: 0;
 }
-
 
 input {
     outline: none;

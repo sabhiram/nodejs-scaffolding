@@ -1,10 +1,17 @@
 body {
     background-color: #1abc9c;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", "PT Sans", sans-serif;
 }
 
+
+
+
+
 .ns-form {
-    font-family: "Roboto", "PT Sans", sans-serif;
-    font-weight: 300;
+    font-weight: 500;
 }
 
 .ns-form-section {
@@ -35,7 +42,6 @@ body {
 
 }
 
-/*The icon to the left of the input field*/
 .ns-input-icon {
     background-color: white;
     height: 40px;
@@ -43,13 +49,11 @@ body {
     border: 1px solid black;
     border-right: none;
 }
-/*The Input field itself*/
 .ns-input-field {
     border: 1px solid black;
     border-left: none;
     padding: 0;
 }
-/*Force the input field to full size*/
 .ns-input-field input {
     width: 100%;
     border: none;
@@ -64,7 +68,34 @@ body {
     width: 92px;
     border-radius: 0;
 }
-
+.ns-btn-fullw {
+    width: 312px;
+}
 input {
     outline: none;
 }
+
+.ns-anim-block {
+  -webkit-transition: 2.5s linear all;
+  transition: 2.5s linear all;
+}
+.ns-anim-block.ng-hide-add {
+    left: -100%;
+}
+.ns-anim-block.ng-hide-remove {
+    left: 0%;
+}
+/*
+.ns-anim-block.ng-hide-remove.ng-hide-remove-active {
+  width: 100%;
+}
+.ns-anim-block.ng-hide-add{
+  width: 0%;
+}*//*
+.ns-anim-block.ng-hide-add.ng-hide-add-active {
+  width: 0;
+}*/
+
+
+
+

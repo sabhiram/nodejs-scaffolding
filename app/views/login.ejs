@@ -17,38 +17,55 @@
     <title>Login!</title>
 </head>
 <body>
-
+    <br><br>
     <!-- Style inspired in part by: http://wrapbootstrap.com/preview/WB0G8810G  -->
     <div class="container" ng-controller="LoginController">
         
-        <!-- Container for the login form and its various tabs -->
         <div class="ns-form-section" id="input_login_form"> 
         
-            <!-- Main section with the fields needed / buttons etc -->
             <div class="ns-form-content">
 
                 <form action="/login" method="post" class="ns-form">
                     <div class="ns-input-container">
-                        <div class="ns-input-group row">
-                            <div class="col-xs-1"></div>
-                            <div class="col-xs-1 ns-input-icon"><i class="fa-user fa"></i></div>
+                        
+                        <!-- Username  -->
+                        <div ng-show="is_visible(PANES.USERNAME)" class="ns-input-group ns-anim-block row">
+                            <div class="col-xs-1 col-xs-offset-1 ns-input-icon"><i class="fa-user fa"></i></div>
                             <div class="col-xs-9 ns-input-field"><input class="ns-text-input" type="text" required="required" placeholder="Username" name="username"/></div>
-                            <div class="col-xs-1"></div>
                         </div>
-                        <div class="ns-input-group row">
-                            <div class="col-xs-1"></div>
-                            <div class="col-xs-1 ns-input-icon"><i class="fa-key fa"></i></div>
+
+                        <!-- Email -->
+                        <div ng-show="is_visible(PANES.EMAIL)" class="ns-input-group ns-anim-block row">
+                            <div class="col-xs-1 col-xs-offset-1 ns-input-icon"><i class="fa">@</i></div>
+                            <div class="col-xs-9 ns-input-field"><input class="ns-text-input" type="email" required="required" placeholder="Email" name="email"/></div>
+                        </div>
+
+                        <!-- Password -->
+                        <div ng-show="is_visible(PANES.PASSWORD)" class="ns-input-group ns-anim-block row">
+                            <div class="col-xs-1 col-xs-offset-1 ns-input-icon"><i class="fa-key fa"></i></div>
                             <div class="col-xs-9 ns-input-field"><input class="ns-text-input" type="password" required="required" placeholder="Password" name="password"/></div>
-                            <div class="col-xs-1"></div>
                         </div>
-                        <div class="ns-submit-group row">
-                            <div class="col-xs-1"></div>
-                            <div class="col-xs-8 row" style="padding-top: 8px;">
-                                <div class="col-xs-1"><input type="checkbox" name="remember_me"></div>
-                                <div class="col-xs-9">Remember Me!</div>
+
+                        <!-- Password verification -->
+                        <div ng-show="is_visible(PANES.VERIFICATION)" class="ns-input-group ns-anim-block row">
+                            <div class="col-xs-1 col-xs-offset-1 ns-input-icon"><i class="fa-key fa"></i></div>
+                            <div class="col-xs-9 ns-input-field"><input class="ns-text-input" type="password" required="required" placeholder="Password Verification" name="verification"/></div>
+                        </div>
+
+                        <!-- Submit for the login -->
+                        <div ng-show="is_visible(PANES.LOGIN_BTN)" class="ns-submit-group ns-anim-block row">
+                            <div class="col-xs-7 row" style="padding-top: 8px;">
+                                <div class="col-xs-4">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="remember_me"></div>
+                                <div class="col-xs-8">Remember Me!</div>
                             </div>
-                            <button class="btn btn-primary ns-btn col-xs-3" type="submit" >Login</button>
+                            <button class="btn btn-primary ns-btn col-xs-offset-2 col-xs-3" type="submit" >Login</button>
                         </div>
+
+                        <!-- Submit for the create new account -->
+                        <div ng-show="is_visible(PANES.SUBMIT_BTN)" class="ns-submit-group ns-anim-block row">
+                            <button class="btn btn-success ns-btn ns-btn-fullw col-xs-offset-1 col-xs-10" type="submit" >Sign up!</button>
+                        </div>
+
                     </div>
                 </form> 
             </div>
@@ -56,23 +73,27 @@
 
 
         <!-- Container for the login form and its various tabs -->
-        <div class="ns-form-section">
-            
+        <div ng-show="is_visible(PANES.NEW_ACCOUNT)" class="ns-form-section ns-anim-block">
             <!-- New user signup -->
             <div>
-                <p>Don't have an account yet? <a href="/signup">Sign up!</a></p>
+                <p>Don't have an account yet? <a href="#" ng-click="switch_state(STATE.SIGNUP)">Sign up!</a></p>
             </div>
-            
         </div>
 
         <!-- Container for the login form and its various tabs -->
-        <div class="ns-form-section">
-            
+        <div ng-show="is_visible(PANES.LOGIN_INSTEAD)" class="ns-form-section ns-anim-block">
             <!-- New user signup -->
             <div>
-                <p>Forgot your password? <a href="/resetpw">Click Here</a></p>
+                <p>Already signed up? <a href="#" ng-click="switch_state(STATE.LOGIN)">Login Instead!</a></p>
             </div>
-            
+        </div>
+
+        <!-- Container for the login form and its various tabs -->
+        <div ng-show="is_visible(PANES.FORGOT_PW)" class="ns-form-section ns-anim-block">
+            <!-- New user signup -->
+            <div>
+                <p>Forgot your password? <a href="#" ng-click="switch_state(STATE.RESETPW)">Click Here</a></p>
+            </div>
         </div>    
     </div>  
 

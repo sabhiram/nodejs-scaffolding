@@ -30,7 +30,7 @@ body {
 
 .ns-input-container {
     padding: 6px 6px 6px 6px;
-    
+    overflow: hidden;
 }
 
 .ns-input-group {
@@ -76,26 +76,27 @@ input {
 }
 
 .ns-anim-block {
-  -webkit-transition: 2.5s linear all;
-  transition: 2.5s linear all;
+    -webkit-transition: 0.8s linear all;
+    transition: 0.8s linear all;  
+}
+.ns-anim-block.ng-hide-add,
+.ns-anim-block.ng-hide-remove {
+    float: left;
+}
+.ns-anim-block.ng-hide.ng-hide-remove {
+    margin-left: 100%;
+    display: block!important;
+
+}
+.ns-anim-block.ng-hide.ng-hide-remove-active {
+    margin-left: 0;
 }
 .ns-anim-block.ng-hide-add {
-    left: -100%;
+    margin-left: 0;
+    display: block!important;
 }
-.ns-anim-block.ng-hide-remove {
-    left: 0%;
+.ns-anim-block.ng-hide-add-active {
+    margin-left: -100%;
 }
-/*
-.ns-anim-block.ng-hide-remove.ng-hide-remove-active {
-  width: 100%;
-}
-.ns-anim-block.ng-hide-add{
-  width: 0%;
-}*//*
-.ns-anim-block.ng-hide-add.ng-hide-add-active {
-  width: 0;
-}*/
-
-
 
 

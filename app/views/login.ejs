@@ -25,8 +25,10 @@
     <!-- Style inspired in part by: http://wrapbootstrap.com/preview/WB0G8810G  -->
     <div class="ns-container" ng-controller="LoginController">
 
-        <div class="ns-message" ng-repeat="message in messages">
-            {{ message }}
+        <div ng-repeat="message in messages">
+            <div class="ns-message {{message.class}}">
+                {{message.message}}
+            </div>
         </div>
 
         <!-- For login activities... -->

@@ -29,6 +29,7 @@ body {
     padding: 0;
 }
 
+.ns-message, 
 .ns-section {
     background-color: white;
     
@@ -86,8 +87,19 @@ body {
 
 
 
-
-
+/*Message Styling*/
+.ns-message {
+    padding: 6px;
+}
+.ns-message-error {
+    background-color: rgba(255, 0, 0, 0.6);
+}
+.ns-message-success {
+    background-color: rgba(0, 255, 0, 0.6);
+}
+.ns-message-warn {
+    background-color: rgba(255, 255, 25, 0.6);
+}
 
 
 

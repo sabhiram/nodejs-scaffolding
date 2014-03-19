@@ -22,7 +22,7 @@ module.exports = function(log, passport) {
                         log.error("Login error: " + error);
                         return next(error);
                     }
-                    
+
                     // Since the login worked, redirect to home
                     return response.redirect("/")
                 });
@@ -49,7 +49,7 @@ module.exports = function(log, passport) {
                     return response.redirect("/");
                 } else {
                     log.error(error);
-                    request.session.messages = ["Error saving user to db.", error.err];
+                    request.session.messages = ["Error saving user to db. - " + error.err];
                     return response.redirect("/signup");
                 }
             });

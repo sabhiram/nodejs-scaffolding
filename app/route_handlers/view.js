@@ -1,7 +1,7 @@
 module.exports = function(log) {
     return {
         home: function(request, response) {
-            response.render("index", { user: request.user, messages: request.session.messages });
+            response.render("index", { username: request.user.username, messages: request.session.messages });
         },
         login: function(request, response) {
             response.render("login", { user: request.user, messages: request.session.messages, mode: "LOGIN" });

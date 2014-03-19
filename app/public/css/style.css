@@ -22,6 +22,11 @@ body {
     height: 50px;
     width: 100%;
     background-color: #000000;
+    line-height: 50px;
+    font-size: 13pt;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
 }
 
 .ns-section {

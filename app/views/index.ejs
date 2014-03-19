@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="NodeScaffold">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -10,25 +10,29 @@
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.anim.css">
-    <link rel="stylesheet" href="/css/style.stolen.css">
     <link rel="stylesheet" href="/css/style.css">
 
-    <script src="/js/angular.min.js"></script>
-    <script src="/js/angular-animate.min.js"></script>
-    <script src="/js/login_controller.js"></script>
-    <title>Login!</title>
+    <script src="/js/angular.js"></script>
+    <script src="/js/angular-animate.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <title>Welcome <%= username %></title>
 </head>
 <body>
-    <div class="ns-temp-nav">
+
+    <div class="ns-temp-nav row">
+        <div align="left" class="col-xs-6">
+            Welcome <%= username %>
+        </div>
+        <div align="right" class="col-xs-6">
+                <a href="/user/<%= username %>/options"><i class="fa fa-wrench"></i> options</a>&nbsp;&nbsp;
+                <a href="/logout"><i class="fa fa-sign-out"></i> logout</a>
+        </div>
     </div>
+
     
-    <br><br><br>
-    <p>
-        <a href="/login">Login</a> to get started
-    </p>
     
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.js"></script>
+    
 
     <script>
         // On document ready...

@@ -23,9 +23,9 @@
     <!-- Style inspired in part by: http://wrapbootstrap.com/preview/WB0G8810G  -->
     <div class="ns-container" ng-controller="LoginController">
 
-        <!-- <div class="ns-message" ng-repeat="message in messages">
+        <div class="ns-message" ng-repeat="message in messages">
             {{ message }}
-        </div> -->
+        </div>
 
         <!-- For login activities... -->
         <div class="ns-section">
@@ -121,7 +121,7 @@
         // a much cleaner way to bridge the world between the data
         // EJS passes the page, and what angular sees.
         var _page_state_str = "<%= mode %>";
-        // var _messages       = <%- JSON.stringify( messages || [] ) %>;
+        var _messages       = <%- JSON.stringify( messages || [] ) %>;
 
     </script>
 

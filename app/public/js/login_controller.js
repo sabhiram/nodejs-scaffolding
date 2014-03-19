@@ -40,7 +40,7 @@ app.controller('LoginController', function LoginController($scope, $injector, $h
     
     // Load the messages passed in from the server into 
     // the scope and display them accordingly
-    // $scope.messages = _messages;
+    $scope.messages = _messages;
 
 
     $scope.switch_state = function(target_state) {

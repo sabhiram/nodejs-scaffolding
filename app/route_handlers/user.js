@@ -4,7 +4,9 @@ var
 module.exports = function(log, passport) {
     return {
         login: function(request, response, next) {
+
             log.info("POST /LOGIN");
+
             passport.authenticate("local", function(error, user, info) {
                 if(error) {
                     log.error("Authentication error: " + error);
@@ -20,7 +22,9 @@ module.exports = function(log, passport) {
                         log.error("Login error: " + error);
                         return next(error);
                     }
-                    return response.redirect("/account");
+                    
+                    // Since the login worked, redirect to home
+                    return response.redirect("/")
                 });
             })(request, response, next);
         },
@@ -42,7 +46,7 @@ module.exports = function(log, passport) {
                 if(!error) {
                     log.info("New user " + request.body.username + " saved");
                     request.session.messages = ["Account created, please login to continue!"];
-                    return response.redirect("/account");
+                    return response.redirect("/");
                 } else {
                     log.error(error);
                     request.session.messages = ["Error saving user to db.", error.err];

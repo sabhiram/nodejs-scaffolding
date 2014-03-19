@@ -15,6 +15,11 @@ module.exports = function(grunt) {
                 next();
             },
             function bringup_vagrant(next) {
+                grunt.log.write("* Note: You might be prompted to enter your system password");
+                grunt.log.write("*       This is to allow vagrant to mount the NFS shared");
+                grunt.log.write("*       folders for the VM being created.");
+                grunt.log.write("");
+                
                 exec("vagrant up", {cwd: "./services/mongodb"}, function(error, stdout) {
                     grunt.log.write(stdout);
                     exec("vagrant provision", {cwd: "./services/mongodb"}, function(error, stdout) {

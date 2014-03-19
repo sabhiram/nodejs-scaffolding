@@ -4,13 +4,12 @@ module.exports = function(log) {
             response.render("index", { user: request.user, messages: request.session.messages });
         },
         login: function(request, response) {
-            response.render("login", { user: request.user, messages: request.session.messages });
+            response.render("login", { user: request.user, messages: request.session.messages, mode: "LOGIN" });
         },
         signup: function(request, response) {
-            response.render("signup", { messages: request.session.messages });
+            response.render("login", { messages: request.session.messages, mode: "SIGNUP" });
         },
         account: function(request, response) {
-            console.log("Routing to account page");
             response.render("account", { user: request.user, messages: request.session.messages });
         },
         error: function(request, response) {

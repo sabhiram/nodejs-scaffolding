@@ -1,18 +1,102 @@
+/*
+EXPERIMENT W/ BRIGHT COLORS
+Main BG:        #`1abcde
+Complement:     #`f54321
+Nav Color:      #`211111
+*/
+
+/*
+Main BG:        #ffffff
+Complement:     #000000
+Nav Color:      #000000
+*/
 body {
-    background-color: #1abc9c;
+    background-color: #ffffff;
     overflow: hidden;
     margin: 0;
     padding: 0;
     font-family: "Roboto", "PT Sans", sans-serif;
 }
 
+.ns-temp-nav {
+    height: 50px;
+    width: 100%;
+    background-color: #000000;
+}
 
+.ns-section {
+    background-color: white;
+    
+    width: 100%;
+    max-width: 380px;
 
+    margin: 0 auto;
+    margin-top: 12px;
+
+    -o-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    -ms-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.ns-section-header {
+    padding: 10px;
+    font-size: 13pt;
+    color: #000000;
+    background-color: #ffffff;
+    text-align: center;
+    vertical-align: center;
+}
+
+.ns-section-body {
+    overflow: hidden;
+}
 
 
 .ns-form {
     font-weight: 500;
 }
+.ns-form-row {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.ns-btn {
+    height: 38px;
+    border-radius: 0;
+}
+.ns-form:first-child {
+    padding-top: 15px;
+}
+.ns-form:last-child {
+    padding-bottom: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .ns-form-section {
     width: 100%;
@@ -26,6 +110,7 @@ body {
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
     padding: 6px 6px 6px 6px;
     margin-top: 4px;
+    overflow: hidden;
 }
 
 .ns-input-container {
@@ -35,10 +120,12 @@ body {
 
 .ns-input-group {
     padding: 10px 0 10px 0;
+    max-height: 60px;
     overflow: hidden;
 }
 .ns-submit-group {
     padding: 10px 0 10px 0;
+    overflow: hidden;
 
 }
 
@@ -63,40 +150,11 @@ body {
     padding-top: 2px;
     margin: none;
 }
-.ns-btn {
-    height: 38px;
-    width: 92px;
-    border-radius: 0;
-}
 .ns-btn-fullw {
     width: 312px;
 }
 input {
     outline: none;
-}
-
-.ns-anim-block {
-    -webkit-transition: 0.8s linear all;
-    transition: 0.8s linear all;  
-}
-.ns-anim-block.ng-hide-add,
-.ns-anim-block.ng-hide-remove {
-    float: left;
-}
-.ns-anim-block.ng-hide.ng-hide-remove {
-    margin-left: 100%;
-    display: block!important;
-
-}
-.ns-anim-block.ng-hide.ng-hide-remove-active {
-    margin-left: 0;
-}
-.ns-anim-block.ng-hide-add {
-    margin-left: 0;
-    display: block!important;
-}
-.ns-anim-block.ng-hide-add-active {
-    margin-left: -100%;
 }
 
 

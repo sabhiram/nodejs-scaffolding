@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="NodeScaffold">
 
 <head>
     <meta charset="utf-8">
@@ -9,20 +9,33 @@
 
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.anim.css">
+    <link rel="stylesheet" href="/css/style.stolen.css">
     <link rel="stylesheet" href="/css/style.css">
 
-    <title>Home page!</title>
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/angular-animate.min.js"></script>
+    <script src="/js/login_controller.js"></script>
+    <title>Login!</title>
 </head>
-
 <body>
+    <div class="ns-temp-nav">
+    </div>
+    
+    <br><br><br>
+    <p>
+        <a href="/login">Login</a> to get started
+    </p>
+    
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 
-<div class="container">
-    <h1>Welcome</h1>
-    Visit one of these links to get started:
-    <a href="/login">Login</a> | <a href="/account">Account</a> | <a href="/logout">Logout</a>
-</div>
-
-<script src="/js/bootstrap.min.js"></script>
+    <script>
+        // On document ready...
+        $(function() {
+            console.log('Page onReady()');
+        });
+    </script>
 
 </body>
 </html>

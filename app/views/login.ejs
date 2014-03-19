@@ -9,165 +9,138 @@
 
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.anim.css">
+    <link rel="stylesheet" href="/css/style.stolen.css">
     <link rel="stylesheet" href="/css/style.css">
 
-    <script src="/js/angular.min.js"></script>
-    <script src="/js/angular-animate.min.js"></script>
-    <script src="/js/login_controller.js"></script>
     <title>Login!</title>
 </head>
 <body>
-    <br><br>
+    <div class="ns-temp-nav">
+    </div>
+    <br><br><br><br>
     <!-- Style inspired in part by: http://wrapbootstrap.com/preview/WB0G8810G  -->
-    <div class="container" ng-controller="LoginController">
-        
-        <div class="ns-form-section" id="input_login_form"> 
-        
-            <div class="ns-form-content">
+    <div class="ns-container" ng-controller="LoginController">
 
+        <div class="ns-section">
+        <% messages = messages || []; %>
+        <% messages.forEach(function(message) { %>
+            <p><%= message %></p>
+        <% });%>
+        <br>
+        </div>
+
+        <!-- For login activities... -->
+        <div class="ns-section">
+            <div class="ns-section-header ns-anim-block" ng-show="!is_visible(STATE.LOGIN)" ng-click="switch_state(STATE.LOGIN)">
+                Click here to log in instead
+            </div>
+            <div class="ns-section-body ns-anim-block" ng-show="is_visible(STATE.LOGIN)">
+
+                <!-- Login form -->
                 <form action="/login" method="post" class="ns-form">
-                    <div class="ns-input-container">
-                        
-                        <!-- Username  -->
-                        <div ng-show="is_visible(PANES.USERNAME)" class="ns-input-group ns-anim-block row">
-                            <div class="col-xs-1 col-xs-offset-1 ns-input-icon"><i class="fa-user fa"></i></div>
-                            <div class="col-xs-9 ns-input-field"><input class="ns-text-input" type="text" required="required" placeholder="Username" name="username"/></div>
-                        </div>
 
-                        <!-- Email -->
-                        <div ng-show="is_visible(PANES.EMAIL)" class="ns-input-group ns-anim-block row">
-                            <div class="col-xs-1 col-xs-offset-1 ns-input-icon"><i class="fa">@</i></div>
-                            <div class="col-xs-9 ns-input-field"><input class="ns-text-input" type="email" required="required" placeholder="Email" name="email"/></div>
-                        </div>
-
-                        <!-- Password -->
-                        <div ng-show="is_visible(PANES.PASSWORD)" class="ns-input-group ns-anim-block row">
-                            <div class="col-xs-1 col-xs-offset-1 ns-input-icon"><i class="fa-key fa"></i></div>
-                            <div class="col-xs-9 ns-input-field"><input class="ns-text-input" type="password" required="required" placeholder="Password" name="password"/></div>
-                        </div>
-
-                        <!-- Password verification -->
-                        <div ng-show="is_visible(PANES.VERIFICATION)" class="ns-input-group ns-anim-block row">
-                            <div class="col-xs-1 col-xs-offset-1 ns-input-icon"><i class="fa-key fa"></i></div>
-                            <div class="col-xs-9 ns-input-field"><input class="ns-text-input" type="password" required="required" placeholder="Password Verification" name="verification"/></div>
-                        </div>
-
-                        <!-- Submit for the login -->
-                        <div ng-show="is_visible(PANES.LOGIN_BTN)" class="ns-submit-group ns-anim-block row">
-                            <div class="col-xs-7 row" style="padding-top: 8px;">
-                                <div class="col-xs-4">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="remember_me"></div>
-                                <div class="col-xs-8">Remember Me!</div>
-                            </div>
-                            <button class="btn btn-primary ns-btn col-xs-offset-2 col-xs-3" type="submit" >Login</button>
-                        </div>
-
-                        <!-- Submit for the create new account -->
-                        <div ng-show="is_visible(PANES.SUBMIT_BTN)" class="ns-submit-group ns-anim-block row">
-                            <button class="btn btn-success ns-btn ns-btn-fullw col-xs-offset-1 col-xs-10" type="submit" >Sign up!</button>
-                        </div>
-
+                    <!-- Username -->
+                    <div class="row ns-form-row">
+                        <div class="col-xs-1 col-xs-offset-1 ns-input-icon"><i class="fa-user fa"></i></div>
+                        <div class="col-xs-9 ns-input-field"><input class="ns-text-input" type="text" required="required" placeholder="Username" name="username"/></div>
                     </div>
-                </form> 
+
+                    <!-- Password -->
+                    <div class="row ns-form-row">
+                        <div class="col-xs-1 col-xs-offset-1 ns-input-icon"><i class="fa-key fa"></i></div>
+                        <div class="col-xs-9 ns-input-field"><input class="ns-text-input" type="password" required="required" placeholder="Password" name="password"/></div>
+                    </div>
+
+                    <!-- Remember user, session persistence -->
+                    <div class="row ns-form-row">
+                        <div class="col-xs-offset-7 col-xs-1">
+                            <input type="checkbox" value="None" id="remember_me_chkbox" name="remember_me" />
+                        </div>
+                        <div class="col-xs-4">
+                            <label for="remember_me_chkbox">Remember Me!</label>
+                        </div>
+                    </div>
+
+                    <!-- Submit for the login -->
+                    <div class="row ns-form-row">
+                        <button class="btn btn-primary ns-btn col-xs-offset-1 col-xs-10" type="submit">Login</button>
+                    </div>
+                </form>
+
             </div>
         </div>
 
+        <!-- For signup activities -->
+        <div class="ns-section">
+            <div class="ns-section-header ns-anim-block" ng-show="!is_visible(STATE.SIGNUP)" ng-click="switch_state(STATE.SIGNUP)">
+                Click here to sign up!
+            </div>
+            <div class="ns-section-body ns-anim-block" ng-show="is_visible(STATE.SIGNUP)">
+                <!-- Login form -->
+                <form action="/signup" method="post" class="ns-form">
 
-        <!-- Container for the login form and its various tabs -->
-        <div ng-show="is_visible(PANES.NEW_ACCOUNT)" class="ns-form-section ns-anim-block">
-            <!-- New user signup -->
-            <div>
-                <p>Don't have an account yet? <a href="#" ng-click="switch_state(STATE.SIGNUP)">Sign up!</a></p>
+                    <!-- Username -->
+                    <div class="row ns-form-row">
+                        <div class="col-xs-1 col-xs-offset-1 ns-input-icon"><i class="fa-user fa"></i></div>
+                        <div class="col-xs-9 ns-input-field"><input class="ns-text-input" type="text" required="required" placeholder="Username" name="username"/></div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="row ns-form-row">
+                        <div class="col-xs-1 col-xs-offset-1 ns-input-icon"><i class="fa">@</i></div>
+                        <div class="col-xs-9 ns-input-field"><input class="ns-text-input" type="email" required="required" placeholder="Email" name="email"/></div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="row ns-form-row">
+                        <div class="col-xs-1 col-xs-offset-1 ns-input-icon"><i class="fa-key fa"></i></div>
+                        <div class="col-xs-9 ns-input-field"><input class="ns-text-input" type="password" required="required" placeholder="Password" name="password"/></div>
+                    </div>
+
+                    <!-- Password Verification-->
+                    <div class="row ns-form-row">
+                        <div class="col-xs-1 col-xs-offset-1 ns-input-icon"><i class="fa-key fa"></i></div>
+                        <div class="col-xs-9 ns-input-field"><input class="ns-text-input" type="password" required="required" placeholder="Password Verification" name="verification"/></div>
+                    </div>
+
+                    <!-- Submit for the login -->
+                    <div class="row ns-form-row">
+                        <button class="btn btn-success ns-btn col-xs-offset-1 col-xs-10" type="submit">Signup!</button>
+                    </div>
+                </form>
             </div>
         </div>
 
-        <!-- Container for the login form and its various tabs -->
-        <div ng-show="is_visible(PANES.LOGIN_INSTEAD)" class="ns-form-section ns-anim-block">
-            <!-- New user signup -->
-            <div>
-                <p>Already signed up? <a href="#" ng-click="switch_state(STATE.LOGIN)">Login Instead!</a></p>
-            </div>
-        </div>
-
-        <!-- Container for the login form and its various tabs -->
-        <div ng-show="is_visible(PANES.FORGOT_PW)" class="ns-form-section ns-anim-block">
-            <!-- New user signup -->
-            <div>
-                <p>Forgot your password? <a href="#" ng-click="switch_state(STATE.RESETPW)">Click Here</a></p>
-            </div>
-        </div>    
-    </div>  
+    </div>
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
 
     <script>
+        var _page_state_str = "<%= mode %>";
+        console.log("PAGE STATE: "  + _page_state_str);
+    </script>
+
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/angular-animate.min.js"></script>
+    <script src="/js/login_controller.js"></script>
+    <script>
+
         // On document ready...
         $(function() {
             console.log('Page onReady()');
         });
-
         $(".ns-text-input").on("focusin", function() {
             var target = $(this).parent().parent();
-            target.css("background-color", "#dddddd");
-            target.css("border-right", "4px solid #2222dd");
-            target.css("border-left", "4px solid #2222dd");
+            target.css("background-color", "#eeeeee");
         });
         $(".ns-text-input").on("focusout", function() {
             var target = $(this).parent().parent();
             target.css("background-color", "transparent");
-            target.css("border-right", "none");
-            target.css("border-left", "none");
         });
-
 
     </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

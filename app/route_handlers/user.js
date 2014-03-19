@@ -4,6 +4,7 @@ var
 module.exports = function(log, passport) {
     return {
         login: function(request, response, next) {
+            log.info("POST /LOGIN");
             passport.authenticate("local", function(error, user, info) {
                 if(error) {
                     log.error("Authentication error: " + error);
@@ -24,16 +25,18 @@ module.exports = function(log, passport) {
             })(request, response, next);
         },
         signup: function(request, response, next) {
+            log.info("POST /SIGNUP");
             var user_info = request.body;
+
             // This is horrendous... fix this eventually
-            if(!user_info.password_1.match(user_info.password_2)) {
+            if(!user_info.password.match(user_info.verification)) {
                 request.session.messages = ["Provided passwords do not match! Try again!"];
                 return response.redirect("/signup");
             }
             var new_user = new User({
                 username: user_info.username,
                 email: user_info.email,
-                password: user_info.password_1
+                password: user_info.password
             });
             new_user.save(function(error) {
                 if(!error) {

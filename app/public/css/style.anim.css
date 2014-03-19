@@ -1,0 +1,48 @@
+
+/*
+Setup the transition for the "ns-anim-block" class where we
+apply a linear transition to all attributes of the class and
+apply it over 0.33 seconds with a delay of 0 seconds.
+
+The display: block!important; is required to override other classes
+which might change its display during the animation.
+*/
+.ns-anim-block.ng-hide-add,
+.ns-anim-block.ng-hide-remove {
+    -webkit-transition: all 0.33s linear 0.0s;
+    transition: all 0.33s linear 0.0s; 
+    display: block!important;
+}
+
+/*
+If a cell was already hidden, and we wish to remove the ng-hide
+class, that must mean the cell is coming into view. So setup by
+initing the opacity and height to 0
+*/
+.ns-anim-block.ng-hide.ng-hide-remove {
+    opacity: 0;
+    height: 0;
+}
+/*
+Once the animation is active, the target should be opacity of 1,
+with a height of 100%
+*/
+.ns-anim-block.ng-hide.ng-hide-remove-active {
+    opacity: 1;
+    height: 100%;
+}
+
+/*
+If a cell is visible, and we wish to hide it, we do nothing
+since its already in the correct position to start transitioning
+*/
+.ns-anim-block.ng-hide-add {
+}
+/*
+Once the animation is active, we wish to hide it by setting its 
+opacity to 0, and height to 0 as well.
+*/
+.ns-anim-block.ng-hide-add-active {
+    opacity: 0;
+    height: 0;
+}

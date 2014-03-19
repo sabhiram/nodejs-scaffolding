@@ -9,11 +9,9 @@ module.exports = function(app, passport, middleware, handlers) {
     /*                            |                                      |                                 | */
     //                            |                                      |                                 | 
     // Home page                  |                                      |                                 | */
-    app.get(                     "/",               middleware.passthrough,               handlers.view.home );
-    //                            |                                      |                                 |
-    // User login pages           |                                      |                                 |
+    app.get(                     "/",      middleware.ensure_authenticated,               handlers.view.home );
     app.get(                "/login",               middleware.passthrough,              handlers.view.login );
-    app.get(               "/signup",               middleware.passthrough,             handlers.view.signup );
+    app.get(               "/signup",               middleware.passthrough,              handlers.view.login );
     //                            |                                      |                                 |
     // User account page          |                                      |                                 |
     app.get(              "/account",      middleware.ensure_authenticated,            handlers.view.account );

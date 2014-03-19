@@ -1,14 +1,6 @@
 'use strict';
 //
-// Angular stuff
-//
-
-var app = angular.module('NodeScaffold', [
-    "ngAnimate"
-]);
-
-//
-// LOGIN CONTROLLER
+// Global enums
 //
 var STATE = {
     // Enumerations of types of app state
@@ -17,19 +9,19 @@ var STATE = {
     MAX_STATES: 2
 };
 
-// var PANES = {
-//     USERNAME:       {value: 0, name: "username"},
-//     EMAIL:          {value: 1, name: "email"},
-//     PASSWORD:       {value: 2, name: "password"},
-//     VERIFICATION:   {value: 3, name: "verification"},
-//     LOGIN_BTN:      {value: 4, name: "login_btn"},
-//     SUBMIT_BTN:     {value: 5, name: "submit_btn"},
-//     NEW_ACCOUNT:    {value: 6, name: "new_account"},
-//     LOGIN_INSTEAD:  {value: 7, name: "login_instead"},
-//     FORGOT_PW:      {value: 8, name: "forgot_password"},
-//     MAX_PANES:      9
-// };
 
+
+//
+// Angular stuff
+//
+var app = angular.module('NodeScaffold', [
+    "ngAnimate"
+]);
+
+
+//
+// LOGIN CONTROLLER
+//
 app.controller('LoginController', function LoginController($scope, $injector, $http) {
     // Share the enums so that the page scope can access
     // the various enums by their name
@@ -45,7 +37,11 @@ app.controller('LoginController', function LoginController($scope, $injector, $h
         $scope.page_state = STATE.LOGIN;
     }
     
-    console.log(_page_state_str);
+    
+    // Load the messages passed in from the server into 
+    // the scope and display them accordingly
+    // $scope.messages = _messages;
+
 
     $scope.switch_state = function(target_state) {
         if(target_state.value >= 0 && target_state.value < STATE.MAX_STATES) {

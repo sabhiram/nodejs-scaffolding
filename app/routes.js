@@ -11,7 +11,7 @@ module.exports = function(app, passport, middleware, handlers) {
     // Home page                  |                                      |                                 | */
     app.get(                     "/",      middleware.ensure_authenticated,               handlers.view.home );
     app.get(                "/login",               middleware.passthrough,              handlers.view.login );
-    app.get(               "/signup",               middleware.passthrough,              handlers.view.login );
+    app.get(               "/signup",               middleware.passthrough,             handlers.view.signup );
     //                            |                                      |                                 |
     // User account page          |                                      |                                 |
     app.get(              "/account",      middleware.ensure_authenticated,            handlers.view.account );

@@ -14,6 +14,8 @@ module.exports = function(log) {
         },
         error: function(request, response) {
             log.warn("404 page invoked due to some error!");
+            log.warn(request.session.messages);
+            log.warn(request.url + " attempted and failed...");
             response.send(404, "Umm, this is an error page... what the heck are you looking for?");
         }
     };

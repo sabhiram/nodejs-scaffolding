@@ -9,26 +9,23 @@
 
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/style.anim.css">
-    <link rel="stylesheet" href="/css/style.stolen.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.anim.css">
 
     <title>Login!</title>
 </head>
 <body>
-    <div class="ns-temp-nav">
-    </div>
-    <br><br><br><br>
+    
+    <div class="ns-temp-nav"></div>
+    
+    <br>
+    
     <!-- Style inspired in part by: http://wrapbootstrap.com/preview/WB0G8810G  -->
     <div class="ns-container" ng-controller="LoginController">
 
-        <div class="ns-section">
-        <% messages = messages || []; %>
-        <% messages.forEach(function(message) { %>
-            <p><%= message %></p>
-        <% });%>
-        <br>
-        </div>
+        <!-- <div class="ns-message" ng-repeat="message in messages">
+            {{ message }}
+        </div> -->
 
         <!-- For login activities... -->
         <div class="ns-section">
@@ -54,11 +51,11 @@
 
                     <!-- Remember user, session persistence -->
                     <div class="row ns-form-row">
-                        <div class="col-xs-offset-7 col-xs-1">
+                        <div class="col-xs-offset-5 col-xs-1">
                             <input type="checkbox" value="None" id="remember_me_chkbox" name="remember_me" />
                         </div>
-                        <div class="col-xs-4">
-                            <label for="remember_me_chkbox">Remember Me!</label>
+                        <div class="col-xs-5">
+                            <label for="remember_me_chkbox">Stay logged in!</label>
                         </div>
                     </div>
 
@@ -114,16 +111,22 @@
 
     </div>
 
-    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
 
     <script>
+        // TODO: Remove global crap being sent to the angular controller
+        // This is stuff I am "passing" to my angular JS controller
+        // by terribly putting them in global scope. There is probably
+        // a much cleaner way to bridge the world between the data
+        // EJS passes the page, and what angular sees.
         var _page_state_str = "<%= mode %>";
-        console.log("PAGE STATE: "  + _page_state_str);
+        // var _messages       = <%- JSON.stringify( messages || [] ) %>;
+
     </script>
 
-    <script src="/js/angular.min.js"></script>
-    <script src="/js/angular-animate.min.js"></script>
+    <script src="/js/angular.js"></script>
+    <script src="/js/angular-animate.js"></script>
     <script src="/js/login_controller.js"></script>
     <script>
 

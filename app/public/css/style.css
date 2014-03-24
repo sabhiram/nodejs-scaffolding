@@ -18,6 +18,17 @@ body {
     font-family: "Roboto", "PT Sans", sans-serif;
 }
 
+/*Override the stupid padding / margin that comes with bootstrap*/
+.row {
+    padding: 0;
+    margin: 0;
+}
+
+a:hover {
+    color: #74bdfc;
+    text-decoration: none;
+}
+
 .ns-temp-nav {
     height: 50px;
     width: 100%;

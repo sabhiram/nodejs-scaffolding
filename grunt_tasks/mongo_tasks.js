@@ -1,8 +1,24 @@
 var
     exec    = require("child_process").exec,
-    async   = require("async");
+    async   = require("async"),
+    log     = null;
 
+function log_stdout(s) {
+    log.write(s);
+}
+function log_error(s) {
+    log.error(s);
+}
+function exec_async(cmd, working_dir, callback) {
+    var cp = exec(cmd, {cwd: working_dir});
+    cp.stdout.on("data", log_stdout);
+    cp.stderr.on("data", log_error);
+    cp.on("exit", function(code) {
+        callback();
+    });
+}
 module.exports = function(grunt) {
+    log = grunt.log;
 
     // Custom task to get the test and user db up and running before
     // we jump into development etc...
@@ -15,19 +31,10 @@ module.exports = function(grunt) {
                 next();
             },
             function bringup_vagrant(next) {
-                grunt.log.write("* Note: You might be prompted to enter your system password");
-                grunt.log.write("*       This is to allow vagrant to mount the NFS shared");
-                grunt.log.write("*       folders for the VM being created.");
-                grunt.log.write("");
-                
-                exec("vagrant up", {cwd: "./services/mongodb"}, function(error, stdout) {
-                    grunt.log.write(stdout);
-                    exec("vagrant provision", {cwd: "./services/mongodb"}, function(error, stdout) {
-                        grunt.log.write("\n");
-                        grunt.log.write(stdout);
-                        next(error);
-                    });
-                });
+                exec_async("vagrant up", "./services/mongodb", next);
+            },
+            function provision_vm(next) {
+                exec_async("vagrant provision", "./services/mongodb", next);
             }
         ], function(error) {
             callback(error);
@@ -44,10 +51,7 @@ module.exports = function(grunt) {
                 next();
             },
             function halt_vagrant(next) {
-                exec("vagrant halt", {cwd: "./services/mongodb"}, function(error, stdout) {
-                    grunt.log.write(stdout);
-                    next(error);
-                });
+                exec_async("vagrant halt", "./services/mongodb", next);
             }
         ], function(error) {
             callback(error);
@@ -64,10 +68,7 @@ module.exports = function(grunt) {
                 next();
             },
             function reset_vagrant(next) {
-                exec("vagrant destroy -f", {cwd: "./services/mongodb"}, function(error, stdout) {
-                    grunt.log.write(stdout);
-                    next(error);
-                });
+                exec_async("vagrant destroy -f", "./services/mongodb", next);
             }
         ], function(error) {
             callback(error);

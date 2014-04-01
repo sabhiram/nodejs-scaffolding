@@ -1,7 +1,7 @@
 site_name: NodeJS Scaffold
 pages:
 - ['index.md',                      'Sitemap']
-# - ['install/overview.md',           'Install',      'Install overview']
+- ['install/overview.md',           'Install',      'Install overview']
 # - ['install/project.md',            'Install',      'Project structre - what goes where?']
 # - ['install/modules.md',            'Install',      'Modules Used']
 # - ['install/requirements.md',       'Install',      'Requirements']
@@ -24,6 +24,6 @@ pages:
 # - ['advanced/docker.md',            'Advanced',     'Exploiting Docker for fun and profit']
 # - ['advanced/passwords.md',         'Advanced',     'Storing P4$$W0RD5']
 - ['dummy.md',                      'Dummypage']
-theme: cosmo
+theme: spacelab
 docs_dir: docs
 site_dir: app/public/v0.0.1/docs
